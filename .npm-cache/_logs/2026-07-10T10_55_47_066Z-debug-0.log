@@ -1,0 +1,1001 @@
+0 verbose cli /Users/LP1433/Work/External/stock-analysis-lite/.npm-cache/_npx/ebaba8b9e55fd0a9/node_modules/node/bin/node /usr/local/bin/npm
+1 info using npm@9.6.7
+2 info using node@v20.20.2
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 3ms
+6 timing config:load:builtin Completed in 3ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/Users/LP1433/Work/External/stock-analysis-lite/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 1ms
+11 timing config:load:file:/Users/LP1433/.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 0ms
+16 timing config:load Completed in 6ms
+17 timing npm:load:configload Completed in 6ms
+18 timing npm:load:mkdirpcache Completed in 0ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm install
+21 verbose argv "install" "--legacy-peer-deps"
+22 timing npm:load:setTitle Completed in 8ms
+23 timing config:load:flatten Completed in 1ms
+24 timing npm:load:display Completed in 1ms
+25 verbose logfile logs-max:10 dir:/Users/LP1433/Work/External/stock-analysis-lite/.npm-cache/_logs/2026-07-10T10_55_47_066Z-
+26 verbose logfile /Users/LP1433/Work/External/stock-analysis-lite/.npm-cache/_logs/2026-07-10T10_55_47_066Z-debug-0.log
+27 timing npm:load:logFile Completed in 6ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 23ms
+31 timing arborist:ctor Completed in 0ms
+32 timing idealTree:init Completed in 87ms
+33 timing idealTree:userRequests Completed in 0ms
+34 silly idealTree buildDeps
+35 timing idealTree:#root Completed in 0ms
+36 timing idealTree:node_modules/@tailwindcss/oxide-wasm32-wasi Completed in 0ms
+37 timing idealTree:buildDeps Completed in 1ms
+38 timing idealTree:fixDepFlags Completed in 0ms
+39 timing idealTree Completed in 90ms
+40 silly logfile done cleaning log files
+41 timing arborist:ctor Completed in 0ms
+42 timing reify:loadTrees Completed in 128ms
+43 timing reify:diffTrees Completed in 6ms
+44 silly reify moves {}
+45 timing reify:retireShallow Completed in 2ms
+46 timing reify:createSparse Completed in 4ms
+47 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-wasm32-wasi
+48 silly reify mark deleted [
+48 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-wasm32-wasi'
+48 silly reify ]
+49 timing reifyNode:node_modules/@tailwindcss/oxide-wasm32-wasi Completed in 1ms
+50 timing arborist:ctor Completed in 0ms
+51 timing reify:diffTrees Completed in 3ms
+52 timing reify:loadBundles Completed in 5ms
+53 silly audit bulk request {
+53 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+53 silly audit   '@babel/code-frame': [ '7.29.7' ],
+53 silly audit   '@babel/compat-data': [ '7.29.7' ],
+53 silly audit   '@babel/core': [ '7.29.7' ],
+53 silly audit   '@babel/generator': [ '7.29.7' ],
+53 silly audit   '@babel/helper-compilation-targets': [ '7.29.7' ],
+53 silly audit   '@babel/helper-globals': [ '7.29.7' ],
+53 silly audit   '@babel/helper-module-imports': [ '7.29.7' ],
+53 silly audit   '@babel/helper-module-transforms': [ '7.29.7' ],
+53 silly audit   '@babel/helper-string-parser': [ '7.29.7' ],
+53 silly audit   '@babel/helper-validator-identifier': [ '7.29.7' ],
+53 silly audit   '@babel/helper-validator-option': [ '7.29.7' ],
+53 silly audit   '@babel/helpers': [ '7.29.7' ],
+53 silly audit   '@babel/parser': [ '7.29.7' ],
+53 silly audit   '@babel/template': [ '7.29.7' ],
+53 silly audit   '@babel/traverse': [ '7.29.7' ],
+53 silly audit   '@babel/types': [ '7.29.7' ],
+53 silly audit   '@emnapi/core': [ '1.10.0' ],
+53 silly audit   '@emnapi/runtime': [ '1.11.2', '1.10.0' ],
+53 silly audit   '@emnapi/wasi-threads': [ '1.2.1' ],
+53 silly audit   '@eslint-community/eslint-utils': [ '4.9.1' ],
+53 silly audit   'eslint-visitor-keys': [ '3.4.3', '5.0.1', '4.2.1' ],
+53 silly audit   '@eslint-community/regexpp': [ '4.12.2' ],
+53 silly audit   '@eslint/config-array': [ '0.21.2' ],
+53 silly audit   '@eslint/config-helpers': [ '0.4.2' ],
+53 silly audit   '@eslint/core': [ '0.17.0' ],
+53 silly audit   '@eslint/eslintrc': [ '3.3.5' ],
+53 silly audit   '@eslint/js': [ '9.39.4' ],
+53 silly audit   '@eslint/object-schema': [ '2.1.7' ],
+53 silly audit   '@eslint/plugin-kit': [ '0.4.1' ],
+53 silly audit   '@humanfs/core': [ '0.19.2' ],
+53 silly audit   '@humanfs/node': [ '0.16.8' ],
+53 silly audit   '@humanfs/types': [ '0.15.0' ],
+53 silly audit   '@humanwhocodes/module-importer': [ '1.0.1' ],
+53 silly audit   '@humanwhocodes/retry': [ '0.4.3' ],
+53 silly audit   '@img/colour': [ '1.1.0' ],
+53 silly audit   '@img/sharp-darwin-arm64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-darwin-x64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-riscv64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.4' ],
+53 silly audit   '@img/sharp-linux-arm': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linux-arm64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linux-ppc64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linux-riscv64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linux-s390x': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linux-x64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-wasm32': [ '0.34.5' ],
+53 silly audit   '@img/sharp-win32-arm64': [ '0.34.5' ],
+53 silly audit   '@img/sharp-win32-ia32': [ '0.34.5' ],
+53 silly audit   '@img/sharp-win32-x64': [ '0.34.5' ],
+53 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+53 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+53 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+53 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+53 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+53 silly audit   '@napi-rs/wasm-runtime': [ '1.1.6' ],
+53 silly audit   '@next/env': [ '16.2.10' ],
+53 silly audit   '@next/eslint-plugin-next': [ '16.2.10' ],
+53 silly audit   '@next/swc-darwin-arm64': [ '16.2.10' ],
+53 silly audit   '@next/swc-darwin-x64': [ '16.2.10' ],
+53 silly audit   '@next/swc-linux-arm64-gnu': [ '16.2.10' ],
+53 silly audit   '@next/swc-linux-arm64-musl': [ '16.2.10' ],
+53 silly audit   '@next/swc-linux-x64-gnu': [ '16.2.10' ],
+53 silly audit   '@next/swc-linux-x64-musl': [ '16.2.10' ],
+53 silly audit   '@next/swc-win32-arm64-msvc': [ '16.2.10' ],
+53 silly audit   '@next/swc-win32-x64-msvc': [ '16.2.10' ],
+53 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+53 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+53 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+53 silly audit   '@nolyfill/is-core-module': [ '1.0.39' ],
+53 silly audit   '@reduxjs/toolkit': [ '2.12.0' ],
+53 silly audit   '@rtsao/scc': [ '1.1.0' ],
+53 silly audit   '@standard-schema/spec': [ '1.1.0' ],
+53 silly audit   '@standard-schema/utils': [ '0.3.0' ],
+53 silly audit   '@swc/helpers': [ '0.5.15' ],
+53 silly audit   '@tailwindcss/node': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.3.2' ],
+53 silly audit   '@tailwindcss/postcss': [ '4.3.2' ],
+53 silly audit   '@tybys/wasm-util': [ '0.10.3' ],
+53 silly audit   '@types/d3-array': [ '3.2.2' ],
+53 silly audit   '@types/d3-color': [ '3.1.3' ],
+53 silly audit   '@types/d3-ease': [ '3.0.2' ],
+53 silly audit   '@types/d3-interpolate': [ '3.0.4' ],
+53 silly audit   '@types/d3-path': [ '3.1.1' ],
+53 silly audit   '@types/d3-scale': [ '4.0.9' ],
+53 silly audit   '@types/d3-shape': [ '3.1.8' ],
+53 silly audit   '@types/d3-time': [ '3.0.4' ],
+53 silly audit   '@types/d3-timer': [ '3.0.2' ],
+53 silly audit   '@types/estree': [ '1.0.9' ],
+53 silly audit   '@types/json-schema': [ '7.0.15' ],
+53 silly audit   '@types/json5': [ '0.0.29' ],
+53 silly audit   '@types/node': [ '20.19.43' ],
+53 silly audit   '@types/react': [ '19.2.17' ],
+53 silly audit   '@types/react-dom': [ '19.2.3' ],
+53 silly audit   '@types/use-sync-external-store': [ '0.0.6' ],
+53 silly audit   '@typescript-eslint/eslint-plugin': [ '8.63.0' ],
+53 silly audit   ignore: [ '7.0.5', '5.3.2' ],
+53 silly audit   '@typescript-eslint/parser': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/project-service': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/scope-manager': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/tsconfig-utils': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/type-utils': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/types': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/typescript-estree': [ '8.63.0' ],
+53 silly audit   'balanced-match': [ '4.0.4', '1.0.2' ],
+53 silly audit   'brace-expansion': [ '5.0.7', '1.1.16' ],
+53 silly audit   minimatch: [ '10.2.5', '3.1.5' ],
+53 silly audit   semver: [ '7.8.5', '6.3.1' ],
+53 silly audit   '@typescript-eslint/utils': [ '8.63.0' ],
+53 silly audit   '@typescript-eslint/visitor-keys': [ '8.63.0' ],
+53 silly audit   '@unrs/resolver-binding-android-arm-eabi': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-android-arm64': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-darwin-arm64': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-darwin-x64': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-freebsd-x64': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-arm-gnueabihf': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-arm-musleabihf': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-arm64-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-arm64-musl': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-loong64-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-loong64-musl': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-ppc64-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-riscv64-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-riscv64-musl': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-s390x-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-x64-gnu': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-linux-x64-musl': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-openharmony-arm64': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-wasm32-wasi': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-win32-arm64-msvc': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-win32-ia32-msvc': [ '1.12.2' ],
+53 silly audit   '@unrs/resolver-binding-win32-x64-msvc': [ '1.12.2' ],
+53 silly audit   acorn: [ '8.17.0' ],
+53 silly audit   'acorn-jsx': [ '5.3.2' ],
+53 silly audit   ajv: [ '6.15.0' ],
+53 silly audit   'ansi-styles': [ '4.3.0' ],
+53 silly audit   argparse: [ '2.0.1' ],
+53 silly audit   'aria-query': [ '5.3.2' ],
+53 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+53 silly audit   'array-includes': [ '3.1.9' ],
+53 silly audit   'array.prototype.findlast': [ '1.2.5' ],
+53 silly audit   'array.prototype.findlastindex': [ '1.2.6' ],
+53 silly audit   'array.prototype.flat': [ '1.3.3' ],
+53 silly audit   'array.prototype.flatmap': [ '1.3.3' ],
+53 silly audit   'array.prototype.tosorted': [ '1.1.4' ],
+53 silly audit   'arraybuffer.prototype.slice': [ '1.0.4' ],
+53 silly audit   'ast-types-flow': [ '0.0.8' ],
+53 silly audit   'async-function': [ '1.0.0' ],
+53 silly audit   'available-typed-arrays': [ '1.0.7' ],
+53 silly audit   'axe-core': [ '4.12.1' ],
+53 silly audit   'axobject-query': [ '4.1.0' ],
+53 silly audit   'baseline-browser-mapping': [ '2.10.42' ],
+53 silly audit   braces: [ '3.0.3' ],
+53 silly audit   browserslist: [ '4.28.5' ],
+53 silly audit   'call-bind': [ '1.0.9' ],
+53 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+53 silly audit   'call-bound': [ '1.0.4' ],
+53 silly audit   callsites: [ '3.1.0' ],
+53 silly audit   'caniuse-lite': [ '1.0.30001803' ],
+53 silly audit   chalk: [ '4.1.2' ],
+53 silly audit   'client-only': [ '0.0.1' ],
+53 silly audit   clsx: [ '2.1.1' ],
+53 silly audit   'color-convert': [ '2.0.1' ],
+53 silly audit   'color-name': [ '1.1.4' ],
+53 silly audit   'concat-map': [ '0.0.1' ],
+53 silly audit   'convert-source-map': [ '2.0.0' ],
+53 silly audit   'cross-spawn': [ '7.0.6' ],
+53 silly audit   csstype: [ '3.2.3' ],
+53 silly audit   'd3-array': [ '3.2.4' ],
+53 silly audit   'd3-color': [ '3.1.0' ],
+53 silly audit   'd3-ease': [ '3.0.1' ],
+53 silly audit   'd3-format': [ '3.1.2' ],
+53 silly audit   'd3-interpolate': [ '3.0.1' ],
+53 silly audit   'd3-path': [ '3.1.0' ],
+53 silly audit   'd3-scale': [ '4.0.2' ],
+53 silly audit   'd3-shape': [ '3.2.0' ],
+53 silly audit   'd3-time': [ '3.1.0' ],
+53 silly audit   'd3-time-format': [ '4.1.0' ],
+53 silly audit   'd3-timer': [ '3.0.1' ],
+53 silly audit   'damerau-levenshtein': [ '1.0.8' ],
+53 silly audit   'data-view-buffer': [ '1.0.2' ],
+53 silly audit   'data-view-byte-length': [ '1.0.2' ],
+53 silly audit   'data-view-byte-offset': [ '1.0.1' ],
+53 silly audit   debug: [ '4.4.3', '3.2.7' ],
+53 silly audit   'decimal.js-light': [ '2.5.1' ],
+53 silly audit   'deep-is': [ '0.1.4' ],
+53 silly audit   'define-data-property': [ '1.1.4' ],
+53 silly audit   'define-properties': [ '1.2.1' ],
+53 silly audit   'detect-libc': [ '2.1.2' ],
+53 silly audit   doctrine: [ '2.1.0' ],
+53 silly audit   'dunder-proto': [ '1.0.1' ],
+53 silly audit   'electron-to-chromium': [ '1.5.389' ],
+53 silly audit   'emoji-regex': [ '9.2.2' ],
+53 silly audit   'enhanced-resolve': [ '5.21.6' ],
+53 silly audit   'es-abstract': [ '1.24.2' ],
+53 silly audit   'es-abstract-get': [ '1.0.0' ],
+53 silly audit   'es-define-property': [ '1.0.1' ],
+53 silly audit   'es-errors': [ '1.3.0' ],
+53 silly audit   'es-iterator-helpers': [ '1.3.3' ],
+53 silly audit   'es-object-atoms': [ '1.1.2' ],
+53 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+53 silly audit   'es-shim-unscopables': [ '1.1.0' ],
+53 silly audit   'es-to-primitive': [ '1.3.4' ],
+53 silly audit   'es-toolkit': [ '1.49.0' ],
+53 silly audit   escalade: [ '3.2.0' ],
+53 silly audit   'escape-string-regexp': [ '4.0.0' ],
+53 silly audit   eslint: [ '9.39.4' ],
+53 silly audit   'eslint-config-next': [ '16.2.10' ],
+53 silly audit   globals: [ '16.4.0', '14.0.0' ],
+53 silly audit   'eslint-import-resolver-node': [ '0.3.10' ],
+53 silly audit   'eslint-import-resolver-typescript': [ '3.10.1' ],
+53 silly audit   'eslint-module-utils': [ '2.14.0' ],
+53 silly audit   'eslint-plugin-import': [ '2.32.0' ],
+53 silly audit   'eslint-plugin-jsx-a11y': [ '6.10.2' ],
+53 silly audit   'eslint-plugin-react': [ '7.37.5' ],
+53 silly audit   'eslint-plugin-react-hooks': [ '7.1.1' ],
+53 silly audit   'eslint-scope': [ '8.4.0' ],
+53 silly audit   espree: [ '10.4.0' ],
+53 silly audit   esquery: [ '1.7.0' ],
+53 silly audit   esrecurse: [ '4.3.0' ],
+53 silly audit   estraverse: [ '5.3.0' ],
+53 silly audit   esutils: [ '2.0.3' ],
+53 silly audit   eventemitter3: [ '5.0.4' ],
+53 silly audit   'fast-deep-equal': [ '3.1.3' ],
+53 silly audit   'fast-glob': [ '3.3.1' ],
+53 silly audit   'glob-parent': [ '5.1.2', '6.0.2' ],
+53 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+53 silly audit   'fast-levenshtein': [ '2.0.6' ],
+53 silly audit   fastq: [ '1.20.1' ],
+53 silly audit   fdir: [ '6.5.0' ],
+53 silly audit   'file-entry-cache': [ '8.0.0' ],
+53 silly audit   'fill-range': [ '7.1.1' ],
+53 silly audit   'find-up': [ '5.0.0' ],
+53 silly audit   'flat-cache': [ '4.0.1' ],
+53 silly audit   flatted: [ '3.4.2' ],
+53 silly audit   'for-each': [ '0.3.5' ],
+53 silly audit   'function-bind': [ '1.1.2' ],
+53 silly audit   'function.prototype.name': [ '1.2.0' ],
+53 silly audit   'functions-have-names': [ '1.2.3' ],
+53 silly audit   'generator-function': [ '2.0.1' ],
+53 silly audit   gensync: [ '1.0.0-beta.2' ],
+53 silly audit   'get-intrinsic': [ '1.3.0' ],
+53 silly audit   'get-proto': [ '1.0.1' ],
+53 silly audit   'get-symbol-description': [ '1.1.0' ],
+53 silly audit   'get-tsconfig': [ '4.14.0' ],
+53 silly audit   globalthis: [ '1.0.4' ],
+53 silly audit   gopd: [ '1.2.0' ],
+53 silly audit   'graceful-fs': [ '4.2.11' ],
+53 silly audit   'has-bigints': [ '1.1.0' ],
+53 silly audit   'has-flag': [ '4.0.0' ],
+53 silly audit   'has-property-descriptors': [ '1.0.2' ],
+53 silly audit   'has-proto': [ '1.2.0' ],
+53 silly audit   'has-symbols': [ '1.1.0' ],
+53 silly audit   'has-tostringtag': [ '1.0.2' ],
+53 silly audit   hasown: [ '2.0.4' ],
+53 silly audit   'hermes-estree': [ '0.25.1' ],
+53 silly audit   'hermes-parser': [ '0.25.1' ],
+53 silly audit   immer: [ '11.1.11' ],
+53 silly audit   'import-fresh': [ '3.3.1' ],
+53 silly audit   imurmurhash: [ '0.1.4' ],
+53 silly audit   'internal-slot': [ '1.1.0' ],
+53 silly audit   internmap: [ '2.0.3' ],
+53 silly audit   'is-array-buffer': [ '3.0.5' ],
+53 silly audit   'is-async-function': [ '2.1.1' ],
+53 silly audit   'is-bigint': [ '1.1.0' ],
+53 silly audit   'is-boolean-object': [ '1.2.2' ],
+53 silly audit   'is-bun-module': [ '2.0.0' ],
+53 silly audit   'is-callable': [ '1.2.7' ],
+53 silly audit   'is-core-module': [ '2.16.2' ],
+53 silly audit   'is-data-view': [ '1.0.2' ],
+53 silly audit   'is-date-object': [ '1.1.0' ],
+53 silly audit   'is-document.all': [ '1.0.0' ],
+53 silly audit   'is-extglob': [ '2.1.1' ],
+53 silly audit   'is-finalizationregistry': [ '1.1.1' ],
+53 silly audit   'is-generator-function': [ '1.1.2' ],
+53 silly audit   'is-glob': [ '4.0.3' ],
+53 silly audit   'is-map': [ '2.0.3' ],
+53 silly audit   'is-negative-zero': [ '2.0.3' ],
+53 silly audit   'is-number': [ '7.0.0' ],
+53 silly audit   'is-number-object': [ '1.1.1' ],
+53 silly audit   'is-regex': [ '1.2.1' ],
+53 silly audit   'is-set': [ '2.0.3' ],
+53 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+53 silly audit   'is-string': [ '1.1.1' ],
+53 silly audit   'is-symbol': [ '1.1.1' ],
+53 silly audit   'is-typed-array': [ '1.1.15' ],
+53 silly audit   'is-weakmap': [ '2.0.2' ],
+53 silly audit   'is-weakref': [ '1.1.1' ],
+53 silly audit   'is-weakset': [ '2.0.4' ],
+53 silly audit   isarray: [ '2.0.5' ],
+53 silly audit   isexe: [ '2.0.0' ],
+53 silly audit   'iterator.prototype': [ '1.1.5' ],
+53 silly audit   jiti: [ '2.7.0' ],
+53 silly audit   'js-tokens': [ '4.0.0' ],
+53 silly audit   'js-yaml': [ '4.3.0' ],
+53 silly audit   jsesc: [ '3.1.0' ],
+53 silly audit   'json-buffer': [ '3.0.1' ],
+53 silly audit   'json-schema-traverse': [ '0.4.1' ],
+53 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
+53 silly audit   json5: [ '2.2.3', '1.0.2' ],
+53 silly audit   'jsx-ast-utils': [ '3.3.5' ],
+53 silly audit   keyv: [ '4.5.4' ],
+53 silly audit   'language-subtag-registry': [ '0.3.23' ],
+53 silly audit   'language-tags': [ '1.0.9' ],
+53 silly audit   levn: [ '0.4.1' ],
+53 silly audit   lightningcss: [ '1.32.0' ],
+53 silly audit   'lightningcss-android-arm64': [ '1.32.0' ],
+53 silly audit   'lightningcss-darwin-arm64': [ '1.32.0' ],
+53 silly audit   'lightningcss-darwin-x64': [ '1.32.0' ],
+53 silly audit   'lightningcss-freebsd-x64': [ '1.32.0' ],
+53 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.32.0' ],
+53 silly audit   'lightningcss-linux-arm64-gnu': [ '1.32.0' ],
+53 silly audit   'lightningcss-linux-arm64-musl': [ '1.32.0' ],
+53 silly audit   'lightningcss-linux-x64-gnu': [ '1.32.0' ],
+53 silly audit   'lightningcss-linux-x64-musl': [ '1.32.0' ],
+53 silly audit   'lightningcss-win32-arm64-msvc': [ '1.32.0' ],
+53 silly audit   'lightningcss-win32-x64-msvc': [ '1.32.0' ],
+53 silly audit   'locate-path': [ '6.0.0' ],
+53 silly audit   'lodash.merge': [ '4.6.2' ],
+53 silly audit   'loose-envify': [ '1.4.0' ],
+53 silly audit   'lru-cache': [ '5.1.1' ],
+53 silly audit   'lucide-react': [ '1.24.0' ],
+53 silly audit   'magic-string': [ '0.30.21' ],
+53 silly audit   'math-intrinsics': [ '1.1.0' ],
+53 silly audit   merge2: [ '1.4.1' ],
+53 silly audit   micromatch: [ '4.0.8' ],
+53 silly audit   minimist: [ '1.2.8' ],
+53 silly audit   ms: [ '2.1.3' ],
+53 silly audit   nanoid: [ '3.3.15' ],
+53 silly audit   'napi-postinstall': [ '0.3.4' ],
+53 silly audit   'natural-compare': [ '1.4.0' ],
+53 silly audit   next: [ '16.2.10' ],
+53 silly audit   postcss: [ '8.4.31', '8.5.16' ],
+53 silly audit   'node-exports-info': [ '1.6.2' ],
+53 silly audit   'node-releases': [ '2.0.51' ],
+53 silly audit   'object-assign': [ '4.1.1' ],
+53 silly audit   'object-inspect': [ '1.13.4' ],
+53 silly audit   'object-keys': [ '1.1.1' ],
+53 silly audit   'object.assign': [ '4.1.7' ],
+53 silly audit   'object.entries': [ '1.1.9' ],
+53 silly audit   'object.fromentries': [ '2.0.8' ],
+53 silly audit   'object.groupby': [ '1.0.3' ],
+53 silly audit   'object.values': [ '1.2.1' ],
+53 silly audit   optionator: [ '0.9.4' ],
+53 silly audit   'own-keys': [ '1.0.1' ],
+53 silly audit   'p-limit': [ '3.1.0' ],
+53 silly audit   'p-locate': [ '5.0.0' ],
+53 silly audit   'parent-module': [ '1.0.1' ],
+53 silly audit   'path-exists': [ '4.0.0' ],
+53 silly audit   'path-key': [ '3.1.1' ],
+53 silly audit   'path-parse': [ '1.0.7' ],
+53 silly audit   picocolors: [ '1.1.1' ],
+53 silly audit   picomatch: [ '2.3.2', '4.0.5' ],
+53 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+53 silly audit   'prelude-ls': [ '1.2.1' ],
+53 silly audit   'prop-types': [ '15.8.1' ],
+53 silly audit   punycode: [ '2.3.1' ],
+53 silly audit   'queue-microtask': [ '1.2.3' ],
+53 silly audit   react: [ '19.2.4' ],
+53 silly audit   'react-dom': [ '19.2.4' ],
+53 silly audit   'react-is': [ '16.13.1' ],
+53 silly audit   'react-redux': [ '9.3.0' ],
+53 silly audit   recharts: [ '3.9.2' ],
+53 silly audit   redux: [ '5.0.1' ],
+53 silly audit   'redux-thunk': [ '3.1.0' ],
+53 silly audit   'reflect.getprototypeof': [ '1.0.10' ],
+53 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+53 silly audit   reselect: [ '5.2.0' ],
+53 silly audit   resolve: [ '2.0.0-next.7' ],
+53 silly audit   'resolve-from': [ '4.0.0' ],
+53 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+53 silly audit   reusify: [ '1.1.0' ],
+53 silly audit   'run-parallel': [ '1.2.0' ],
+53 silly audit   'safe-array-concat': [ '1.1.4' ],
+53 silly audit   'safe-push-apply': [ '1.0.0' ],
+53 silly audit   'safe-regex-test': [ '1.1.0' ],
+53 silly audit   scheduler: [ '0.27.0' ],
+53 silly audit   'set-function-length': [ '1.2.2' ],
+53 silly audit   'set-function-name': [ '2.0.2' ],
+53 silly audit   'set-proto': [ '1.0.0' ],
+53 silly audit   sharp: [ '0.34.5' ],
+53 silly audit   'shebang-command': [ '2.0.0' ],
+53 silly audit   'shebang-regex': [ '3.0.0' ],
+53 silly audit   'side-channel': [ '1.1.1' ],
+53 silly audit   'side-channel-list': [ '1.0.1' ],
+53 silly audit   'side-channel-map': [ '1.0.1' ],
+53 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+53 silly audit   'source-map-js': [ '1.2.1' ],
+53 silly audit   'stable-hash': [ '0.0.5' ],
+53 silly audit   'stop-iteration-iterator': [ '1.1.0' ],
+53 silly audit   'string.prototype.includes': [ '2.0.1' ],
+53 silly audit   'string.prototype.matchall': [ '4.0.12' ],
+53 silly audit   'string.prototype.repeat': [ '1.0.0' ],
+53 silly audit   'string.prototype.trim': [ '1.2.11' ],
+53 silly audit   'string.prototype.trimend': [ '1.0.10' ],
+53 silly audit   'string.prototype.trimstart': [ '1.0.8' ],
+53 silly audit   'strip-bom': [ '3.0.0' ],
+53 silly audit   'strip-json-comments': [ '3.1.1' ],
+53 silly audit   'styled-jsx': [ '5.1.6' ],
+53 silly audit   'supports-color': [ '7.2.0' ],
+53 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+53 silly audit   tailwindcss: [ '4.3.2' ],
+53 silly audit   tapable: [ '2.3.3' ],
+53 silly audit   'tiny-invariant': [ '1.3.3' ],
+53 silly audit   tinyglobby: [ '0.2.17' ],
+53 silly audit   'to-regex-range': [ '5.0.1' ],
+53 silly audit   'ts-api-utils': [ '2.5.0' ],
+53 silly audit   'tsconfig-paths': [ '3.15.0' ],
+53 silly audit   tslib: [ '2.8.1' ],
+53 silly audit   'type-check': [ '0.4.0' ],
+53 silly audit   'typed-array-buffer': [ '1.0.3' ],
+53 silly audit   'typed-array-byte-length': [ '1.0.3' ],
+53 silly audit   'typed-array-byte-offset': [ '1.0.4' ],
+53 silly audit   'typed-array-length': [ '1.0.8' ],
+53 silly audit   typescript: [ '5.9.3' ],
+53 silly audit   'typescript-eslint': [ '8.63.0' ],
+53 silly audit   'unbox-primitive': [ '1.1.0' ],
+53 silly audit   'undici-types': [ '6.21.0' ],
+53 silly audit   'unrs-resolver': [ '1.12.2' ],
+53 silly audit   'update-browserslist-db': [ '1.2.3' ],
+53 silly audit   'uri-js': [ '4.4.1' ],
+53 silly audit   'use-sync-external-store': [ '1.6.0' ],
+53 silly audit   'victory-vendor': [ '37.3.6' ],
+53 silly audit   which: [ '2.0.2' ],
+53 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+53 silly audit   'which-builtin-type': [ '1.2.1' ],
+53 silly audit   'which-collection': [ '1.0.2' ],
+53 silly audit   'which-typed-array': [ '1.1.22' ],
+53 silly audit   'word-wrap': [ '1.2.5' ],
+53 silly audit   yallist: [ '3.1.1' ],
+53 silly audit   'yocto-queue': [ '0.1.0' ],
+53 silly audit   zod: [ '4.4.3' ],
+53 silly audit   'zod-validation-error': [ '4.0.2' ],
+53 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.3.2' ]
+53 silly audit }
+54 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-win32-x64-msvc
+55 silly reify mark deleted [
+55 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-win32-x64-msvc'
+55 silly reify ]
+56 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-win32-arm64-msvc
+57 silly reify mark deleted [
+57 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-win32-arm64-msvc'
+57 silly reify ]
+58 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-x64-musl
+59 silly reify mark deleted [
+59 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-x64-musl'
+59 silly reify ]
+60 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-x64-gnu
+61 silly reify mark deleted [
+61 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-x64-gnu'
+61 silly reify ]
+62 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm64-musl
+63 silly reify mark deleted [
+63 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm64-musl'
+63 silly reify ]
+64 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm64-gnu
+65 silly reify mark deleted [
+65 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm64-gnu'
+65 silly reify ]
+66 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm-gnueabihf
+67 silly reify mark deleted [
+67 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-linux-arm-gnueabihf'
+67 silly reify ]
+68 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-freebsd-x64
+69 silly reify mark deleted [
+69 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-freebsd-x64'
+69 silly reify ]
+70 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-darwin-x64
+71 silly reify mark deleted [
+71 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-darwin-x64'
+71 silly reify ]
+72 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-android-arm64
+73 silly reify mark deleted [
+73 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/lightningcss-android-arm64'
+73 silly reify ]
+74 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-x64-msvc
+75 silly reify mark deleted [
+75 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-x64-msvc'
+75 silly reify ]
+76 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-ia32-msvc
+77 silly reify mark deleted [
+77 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-ia32-msvc'
+77 silly reify ]
+78 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-arm64-msvc
+79 silly reify mark deleted [
+79 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-win32-arm64-msvc'
+79 silly reify ]
+80 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-wasm32-wasi
+81 silly reify mark deleted [
+81 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-wasm32-wasi'
+81 silly reify ]
+82 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-wasm32-wasi/node_modules/@emnapi/runtime
+83 silly reify mark deleted [
+83 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-wasm32-wasi/node_modules/@emnapi/runtime'
+83 silly reify ]
+84 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-openharmony-arm64
+85 silly reify mark deleted [
+85 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-openharmony-arm64'
+85 silly reify ]
+86 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-x64-musl
+87 silly reify mark deleted [
+87 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-x64-musl'
+87 silly reify ]
+88 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-x64-gnu
+89 silly reify mark deleted [
+89 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-x64-gnu'
+89 silly reify ]
+90 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-s390x-gnu
+91 silly reify mark deleted [
+91 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-s390x-gnu'
+91 silly reify ]
+92 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-riscv64-musl
+93 silly reify mark deleted [
+93 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-riscv64-musl'
+93 silly reify ]
+94 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-riscv64-gnu
+95 silly reify mark deleted [
+95 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-riscv64-gnu'
+95 silly reify ]
+96 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-ppc64-gnu
+97 silly reify mark deleted [
+97 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-ppc64-gnu'
+97 silly reify ]
+98 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-loong64-musl
+99 silly reify mark deleted [
+99 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-loong64-musl'
+99 silly reify ]
+100 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-loong64-gnu
+101 silly reify mark deleted [
+101 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-loong64-gnu'
+101 silly reify ]
+102 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm64-musl
+103 silly reify mark deleted [
+103 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm64-musl'
+103 silly reify ]
+104 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm64-gnu
+105 silly reify mark deleted [
+105 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm64-gnu'
+105 silly reify ]
+106 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm-musleabihf
+107 silly reify mark deleted [
+107 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm-musleabihf'
+107 silly reify ]
+108 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf
+109 silly reify mark deleted [
+109 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf'
+109 silly reify ]
+110 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-freebsd-x64
+111 silly reify mark deleted [
+111 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-freebsd-x64'
+111 silly reify ]
+112 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-darwin-x64
+113 silly reify mark deleted [
+113 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-darwin-x64'
+113 silly reify ]
+114 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-android-arm64
+115 silly reify mark deleted [
+115 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-android-arm64'
+115 silly reify ]
+116 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-android-arm-eabi
+117 silly reify mark deleted [
+117 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@unrs/resolver-binding-android-arm-eabi'
+117 silly reify ]
+118 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-win32-x64-msvc
+119 silly reify mark deleted [
+119 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+119 silly reify ]
+120 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-win32-arm64-msvc
+121 silly reify mark deleted [
+121 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+121 silly reify ]
+122 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-x64-musl
+123 silly reify mark deleted [
+123 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-x64-musl'
+123 silly reify ]
+124 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-x64-gnu
+125 silly reify mark deleted [
+125 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-x64-gnu'
+125 silly reify ]
+126 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm64-musl
+127 silly reify mark deleted [
+127 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+127 silly reify ]
+128 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm64-gnu
+129 silly reify mark deleted [
+129 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm64-gnu'
+129 silly reify ]
+130 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf
+131 silly reify mark deleted [
+131 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+131 silly reify ]
+132 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-freebsd-x64
+133 silly reify mark deleted [
+133 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-freebsd-x64'
+133 silly reify ]
+134 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-darwin-x64
+135 silly reify mark deleted [
+135 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-darwin-x64'
+135 silly reify ]
+136 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-android-arm64
+137 silly reify mark deleted [
+137 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@tailwindcss/oxide-android-arm64'
+137 silly reify ]
+138 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-win32-x64-msvc
+139 silly reify mark deleted [
+139 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-win32-x64-msvc'
+139 silly reify ]
+140 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-win32-arm64-msvc
+141 silly reify mark deleted [
+141 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-win32-arm64-msvc'
+141 silly reify ]
+142 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-x64-musl
+143 silly reify mark deleted [
+143 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-x64-musl'
+143 silly reify ]
+144 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-x64-gnu
+145 silly reify mark deleted [
+145 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-x64-gnu'
+145 silly reify ]
+146 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-arm64-musl
+147 silly reify mark deleted [
+147 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-arm64-musl'
+147 silly reify ]
+148 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-arm64-gnu
+149 silly reify mark deleted [
+149 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-linux-arm64-gnu'
+149 silly reify ]
+150 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-darwin-x64
+151 silly reify mark deleted [
+151 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@next/swc-darwin-x64'
+151 silly reify ]
+152 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-x64
+153 silly reify mark deleted [
+153 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-x64'
+153 silly reify ]
+154 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-ia32
+155 silly reify mark deleted [
+155 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-ia32'
+155 silly reify ]
+156 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-arm64
+157 silly reify mark deleted [
+157 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-win32-arm64'
+157 silly reify ]
+158 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-wasm32
+159 silly reify mark deleted [
+159 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-wasm32'
+159 silly reify ]
+160 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linuxmusl-x64
+161 silly reify mark deleted [
+161 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linuxmusl-x64'
+161 silly reify ]
+162 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linuxmusl-arm64
+163 silly reify mark deleted [
+163 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linuxmusl-arm64'
+163 silly reify ]
+164 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-x64
+165 silly reify mark deleted [
+165 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-x64'
+165 silly reify ]
+166 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-s390x
+167 silly reify mark deleted [
+167 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-s390x'
+167 silly reify ]
+168 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-riscv64
+169 silly reify mark deleted [
+169 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-riscv64'
+169 silly reify ]
+170 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-ppc64
+171 silly reify mark deleted [
+171 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-ppc64'
+171 silly reify ]
+172 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-arm64
+173 silly reify mark deleted [
+173 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-arm64'
+173 silly reify ]
+174 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-arm
+175 silly reify mark deleted [
+175 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-linux-arm'
+175 silly reify ]
+176 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linuxmusl-x64
+177 silly reify mark deleted [
+177 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linuxmusl-x64'
+177 silly reify ]
+178 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linuxmusl-arm64
+179 silly reify mark deleted [
+179 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+179 silly reify ]
+180 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-x64
+181 silly reify mark deleted [
+181 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-x64'
+181 silly reify ]
+182 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-s390x
+183 silly reify mark deleted [
+183 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-s390x'
+183 silly reify ]
+184 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-riscv64
+185 silly reify mark deleted [
+185 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-riscv64'
+185 silly reify ]
+186 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-ppc64
+187 silly reify mark deleted [
+187 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-ppc64'
+187 silly reify ]
+188 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-arm64
+189 silly reify mark deleted [
+189 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-arm64'
+189 silly reify ]
+190 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-arm
+191 silly reify mark deleted [
+191 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-linux-arm'
+191 silly reify ]
+192 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-darwin-x64
+193 silly reify mark deleted [
+193 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-libvips-darwin-x64'
+193 silly reify ]
+194 verbose reify failed optional dependency /Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-darwin-x64
+195 silly reify mark deleted [
+195 silly reify   '/Users/LP1433/Work/External/stock-analysis-lite/node_modules/@img/sharp-darwin-x64'
+195 silly reify ]
+196 timing reifyNode:node_modules/lightningcss-win32-x64-msvc Completed in 40ms
+197 timing reifyNode:node_modules/lightningcss-win32-arm64-msvc Completed in 40ms
+198 timing reifyNode:node_modules/lightningcss-linux-x64-musl Completed in 40ms
+199 timing reifyNode:node_modules/lightningcss-linux-x64-gnu Completed in 40ms
+200 timing reifyNode:node_modules/lightningcss-linux-arm64-musl Completed in 40ms
+201 timing reifyNode:node_modules/lightningcss-linux-arm64-gnu Completed in 40ms
+202 timing reifyNode:node_modules/lightningcss-linux-arm-gnueabihf Completed in 40ms
+203 timing reifyNode:node_modules/lightningcss-freebsd-x64 Completed in 40ms
+204 timing reifyNode:node_modules/lightningcss-darwin-x64 Completed in 40ms
+205 timing reifyNode:node_modules/lightningcss-android-arm64 Completed in 40ms
+206 timing reifyNode:node_modules/@unrs/resolver-binding-win32-x64-msvc Completed in 40ms
+207 timing reifyNode:node_modules/@unrs/resolver-binding-win32-ia32-msvc Completed in 40ms
+208 timing reifyNode:node_modules/@unrs/resolver-binding-win32-arm64-msvc Completed in 40ms
+209 timing reifyNode:node_modules/@unrs/resolver-binding-wasm32-wasi Completed in 40ms
+210 timing reifyNode:node_modules/@unrs/resolver-binding-openharmony-arm64 Completed in 40ms
+211 timing reifyNode:node_modules/@unrs/resolver-binding-linux-x64-musl Completed in 40ms
+212 timing reifyNode:node_modules/@unrs/resolver-binding-linux-x64-gnu Completed in 40ms
+213 timing reifyNode:node_modules/@unrs/resolver-binding-linux-s390x-gnu Completed in 40ms
+214 timing reifyNode:node_modules/@unrs/resolver-binding-linux-riscv64-musl Completed in 40ms
+215 timing reifyNode:node_modules/@unrs/resolver-binding-linux-riscv64-gnu Completed in 40ms
+216 timing reifyNode:node_modules/@unrs/resolver-binding-linux-ppc64-gnu Completed in 40ms
+217 timing reifyNode:node_modules/@unrs/resolver-binding-linux-loong64-musl Completed in 40ms
+218 timing reifyNode:node_modules/@unrs/resolver-binding-linux-loong64-gnu Completed in 40ms
+219 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm64-musl Completed in 40ms
+220 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm64-gnu Completed in 40ms
+221 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm-musleabihf Completed in 40ms
+222 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm-gnueabihf Completed in 40ms
+223 timing reifyNode:node_modules/@unrs/resolver-binding-freebsd-x64 Completed in 39ms
+224 timing reifyNode:node_modules/@unrs/resolver-binding-darwin-x64 Completed in 39ms
+225 timing reifyNode:node_modules/@unrs/resolver-binding-android-arm64 Completed in 39ms
+226 timing reifyNode:node_modules/@unrs/resolver-binding-android-arm-eabi Completed in 39ms
+227 timing reifyNode:node_modules/@tailwindcss/oxide-win32-x64-msvc Completed in 39ms
+228 timing reifyNode:node_modules/@tailwindcss/oxide-win32-arm64-msvc Completed in 39ms
+229 timing reifyNode:node_modules/@tailwindcss/oxide-linux-x64-musl Completed in 39ms
+230 timing reifyNode:node_modules/@tailwindcss/oxide-linux-x64-gnu Completed in 39ms
+231 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm64-musl Completed in 39ms
+232 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm64-gnu Completed in 39ms
+233 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm-gnueabihf Completed in 40ms
+234 timing reifyNode:node_modules/@tailwindcss/oxide-freebsd-x64 Completed in 40ms
+235 timing reifyNode:node_modules/@tailwindcss/oxide-darwin-x64 Completed in 40ms
+236 timing reifyNode:node_modules/@tailwindcss/oxide-android-arm64 Completed in 40ms
+237 timing reifyNode:node_modules/@next/swc-win32-x64-msvc Completed in 40ms
+238 timing reifyNode:node_modules/@next/swc-win32-arm64-msvc Completed in 40ms
+239 timing reifyNode:node_modules/@next/swc-linux-x64-musl Completed in 40ms
+240 timing reifyNode:node_modules/@next/swc-linux-x64-gnu Completed in 40ms
+241 timing reifyNode:node_modules/@next/swc-linux-arm64-musl Completed in 40ms
+242 timing reifyNode:node_modules/@next/swc-linux-arm64-gnu Completed in 40ms
+243 timing reifyNode:node_modules/@next/swc-darwin-x64 Completed in 40ms
+244 timing reifyNode:node_modules/@img/sharp-win32-x64 Completed in 40ms
+245 timing reifyNode:node_modules/@img/sharp-win32-ia32 Completed in 40ms
+246 timing reifyNode:node_modules/@img/sharp-win32-arm64 Completed in 40ms
+247 timing reifyNode:node_modules/@img/sharp-wasm32 Completed in 40ms
+248 timing reifyNode:node_modules/@img/sharp-linuxmusl-x64 Completed in 40ms
+249 timing reifyNode:node_modules/@img/sharp-linuxmusl-arm64 Completed in 40ms
+250 timing reifyNode:node_modules/@img/sharp-linux-x64 Completed in 40ms
+251 timing reifyNode:node_modules/@img/sharp-linux-s390x Completed in 40ms
+252 timing reifyNode:node_modules/@img/sharp-linux-riscv64 Completed in 40ms
+253 timing reifyNode:node_modules/@img/sharp-linux-ppc64 Completed in 40ms
+254 timing reifyNode:node_modules/@img/sharp-linux-arm64 Completed in 40ms
+255 timing reifyNode:node_modules/@img/sharp-linux-arm Completed in 40ms
+256 timing reifyNode:node_modules/@img/sharp-libvips-linuxmusl-x64 Completed in 40ms
+257 timing reifyNode:node_modules/@img/sharp-libvips-linuxmusl-arm64 Completed in 40ms
+258 timing reifyNode:node_modules/@img/sharp-libvips-linux-x64 Completed in 40ms
+259 timing reifyNode:node_modules/@img/sharp-libvips-linux-s390x Completed in 40ms
+260 timing reifyNode:node_modules/@img/sharp-libvips-linux-riscv64 Completed in 40ms
+261 timing reifyNode:node_modules/@img/sharp-libvips-linux-ppc64 Completed in 40ms
+262 timing reifyNode:node_modules/@img/sharp-libvips-linux-arm64 Completed in 40ms
+263 timing reifyNode:node_modules/@img/sharp-libvips-linux-arm Completed in 40ms
+264 timing reifyNode:node_modules/@img/sharp-libvips-darwin-x64 Completed in 40ms
+265 timing reifyNode:node_modules/@img/sharp-darwin-x64 Completed in 40ms
+266 silly tarball no local data for @tailwindcss/oxide-darwin-arm64@https://registry.npmjs.org/@tailwindcss/oxide-darwin-arm64/-/oxide-darwin-arm64-4.3.2.tgz. Extracting by manifest.
+267 silly tarball no local data for @img/sharp-darwin-arm64@https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz. Extracting by manifest.
+268 silly tarball no local data for sharp@https://registry.npmjs.org/sharp/-/sharp-0.34.5.tgz. Extracting by manifest.
+269 timing reifyNode:node_modules/@img/colour Completed in 69ms
+270 timing reifyNode:node_modules/sharp/node_modules/semver Completed in 77ms
+271 timing reifyNode:node_modules/@unrs/resolver-binding-wasm32-wasi/node_modules/@emnapi/runtime Completed in 77ms
+272 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 436ms
+273 timing auditReport:getReport Completed in 439ms
+274 silly audit report {
+274 silly audit report   postcss: [
+274 silly audit report     {
+274 silly audit report       id: 1117015,
+274 silly audit report       url: 'https://github.com/advisories/GHSA-qx2v-qp2m-jg93',
+274 silly audit report       title: 'PostCSS has XSS via Unescaped </style> in its CSS Stringify Output',
+274 silly audit report       severity: 'moderate',
+274 silly audit report       vulnerable_versions: '<8.5.10',
+274 silly audit report       cwe: [Array],
+274 silly audit report       cvss: [Object]
+274 silly audit report     }
+274 silly audit report   ]
+274 silly audit report }
+275 timing metavuln:cache:get:security-advisory:postcss:685RVq5xScaqegAXk2BRJrsMaZmsz1d/volUoA67iVw3AvHhUlX03u+VPRrmo8iuObcSDvuZF+fuiOnLC9L1uA== Completed in 5ms
+276 http fetch GET 200 https://registry.npmjs.org/postcss 324ms (cache revalidated)
+277 timing metavuln:packument:postcss Completed in 325ms
+278 timing metavuln:load:security-advisory:postcss:1117015 Completed in 1ms
+279 timing metavuln:calculate:security-advisory:postcss:1117015 Completed in 326ms
+280 timing metavuln:cache:get:security-advisory:next:++TMQRwRMuAg5JaA57A8kadT8SbeBIqrzl+otPGsE46Z5PGnGvwSbtrHMqHSzpH6UEwsYqk9mYjoPnnsNBcW7Q== Completed in 3ms
+281 http fetch GET 200 https://registry.npmjs.org/sharp/-/sharp-0.34.5.tgz 840ms (cache miss)
+282 timing reifyNode:node_modules/sharp Completed in 895ms
+283 http fetch GET 200 https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz 945ms (cache miss)
+284 timing reifyNode:node_modules/@img/sharp-darwin-arm64 Completed in 997ms
+285 http fetch GET 200 https://registry.npmjs.org/next 328ms (cache revalidated)
+286 timing metavuln:packument:next Completed in 523ms
+287 timing metavuln:load:security-advisory:next:685RVq5xScaqegAXk2BRJrsMaZmsz1d/volUoA67iVw3AvHhUlX03u+VPRrmo8iuObcSDvuZF+fuiOnLC9L1uA== Completed in 33ms
+288 timing metavuln:calculate:security-advisory:next:685RVq5xScaqegAXk2BRJrsMaZmsz1d/volUoA67iVw3AvHhUlX03u+VPRrmo8iuObcSDvuZF+fuiOnLC9L1uA== Completed in 556ms
+289 timing auditReport:init Completed in 935ms
+290 timing reify:audit Completed in 1375ms
+291 http fetch GET 200 https://registry.npmjs.org/@tailwindcss/oxide-darwin-arm64/-/oxide-darwin-arm64-4.3.2.tgz 2446ms (cache miss)
+292 timing reifyNode:node_modules/@tailwindcss/oxide-darwin-arm64 Completed in 2498ms
+293 timing reify:unpack Completed in 2499ms
+294 timing reify:unretire Completed in 0ms
+295 timing build:queue Completed in 2ms
+296 timing build:link:node_modules/sharp/node_modules/semver Completed in 2ms
+297 timing build:link Completed in 2ms
+298 info run sharp@0.34.5 install node_modules/sharp node install/check.js || npm run build
+299 info run sharp@0.34.5 install { code: 0, signal: null }
+300 timing build:run:install:node_modules/sharp Completed in 20222ms
+301 timing build:run:install Completed in 20222ms
+302 timing build:deps Completed in 20228ms
+303 timing build Completed in 20229ms
+304 timing reify:build Completed in 20229ms
+305 timing reify:trash Completed in 9ms
+306 timing reify:save Completed in 55ms
+307 timing reify Completed in 22966ms
+308 silly ADD node_modules/sharp
+309 silly ADD node_modules/sharp/node_modules/semver
+310 silly ADD
+311 silly ADD
+312 silly ADD
+313 silly ADD
+314 silly ADD
+315 silly ADD
+316 silly ADD
+317 silly ADD
+318 silly ADD
+319 silly ADD
+320 silly ADD
+321 silly ADD
+322 silly ADD
+323 silly ADD
+324 silly ADD node_modules/@emnapi/runtime
+325 silly ADD
+326 silly ADD
+327 silly ADD
+328 silly ADD
+329 silly ADD
+330 silly ADD
+331 silly ADD
+332 silly ADD
+333 silly ADD
+334 silly ADD
+335 silly ADD
+336 silly ADD
+337 silly ADD
+338 silly ADD
+339 silly ADD
+340 silly ADD
+341 silly ADD
+342 silly ADD
+343 silly ADD
+344 silly ADD
+345 silly ADD
+346 silly ADD
+347 silly ADD
+348 silly ADD
+349 silly ADD
+350 silly ADD
+351 silly ADD
+352 silly ADD node_modules/@tailwindcss/oxide-darwin-arm64
+353 silly ADD
+354 silly ADD
+355 silly ADD
+356 silly ADD
+357 silly ADD
+358 silly ADD
+359 silly ADD
+360 silly ADD
+361 silly ADD
+362 silly ADD
+363 silly ADD
+364 silly ADD
+365 silly ADD
+366 silly ADD
+367 silly ADD
+368 silly ADD
+369 silly ADD
+370 silly ADD
+371 silly ADD
+372 silly ADD
+373 silly ADD
+374 silly ADD
+375 silly ADD
+376 silly ADD
+377 silly ADD
+378 silly ADD
+379 silly ADD
+380 silly ADD
+381 silly ADD
+382 silly ADD
+383 silly ADD node_modules/@img/sharp-darwin-arm64
+384 silly ADD node_modules/@img/colour
+385 timing command:install Completed in 22994ms
+386 verbose exit 0
+387 timing npm Completed in 23128ms
+388 info ok

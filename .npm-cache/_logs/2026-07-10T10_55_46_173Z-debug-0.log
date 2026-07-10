@@ -1,0 +1,41 @@
+0 verbose cli /usr/local/bin/node /usr/local/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@9.6.7
+2 info using node@v18.16.0
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 0ms
+6 timing config:load:builtin Completed in 0ms
+7 timing config:load:cli Completed in 2ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/Users/LP1433/Work/External/stock-analysis-lite/.npmrc Completed in 1ms
+10 timing config:load:project Completed in 1ms
+11 timing config:load:file:/Users/LP1433/.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 0ms
+16 timing config:load Completed in 4ms
+17 timing npm:load:configload Completed in 4ms
+18 timing npm:load:mkdirpcache Completed in 1ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm exec
+21 verbose argv "exec" "--package" "node@20" "--call" "npm install --legacy-peer-deps"
+22 timing npm:load:setTitle Completed in 11ms
+23 timing config:load:flatten Completed in 2ms
+24 timing npm:load:display Completed in 2ms
+25 verbose logfile logs-max:10 dir:/Users/LP1433/Work/External/stock-analysis-lite/.npm-cache/_logs/2026-07-10T10_55_46_173Z-
+26 verbose logfile /Users/LP1433/Work/External/stock-analysis-lite/.npm-cache/_logs/2026-07-10T10_55_46_173Z-debug-0.log
+27 timing npm:load:logFile Completed in 6ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 25ms
+31 timing arborist:ctor Completed in 0ms
+32 silly logfile done cleaning log files
+33 timing arborist:ctor Completed in 0ms
+34 http fetch GET 200 https://registry.npmjs.org/node 232ms (cache revalidated)
+35 timing arborist:ctor Completed in 0ms
+36 verbose shrinkwrap failed to load node_modules/.package-lock.json missing from lockfile: node_modules/node/node_modules/node-bin-darwin-arm64
+37 timing command:exec Completed in 23822ms
+38 verbose exit 0
+39 timing npm Completed in 24046ms
+40 info ok
