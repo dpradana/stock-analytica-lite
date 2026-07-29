@@ -322,7 +322,7 @@ export default function Home() {
     localStorage.setItem('stock_analytica_transactions', JSON.stringify(updated));
 
     if (isSupabaseConfigured && user) {
-      await savePortfolioItemToSupabase(user.id, transaction.symbol, transaction.quantity, transaction.price);
+      await savePortfolioItemToSupabase(user.id, transaction.symbol, transaction.quantity, transaction.price, transaction.date);
     }
   };
 
@@ -333,7 +333,7 @@ export default function Home() {
     localStorage.setItem('stock_analytica_transactions', JSON.stringify(updated));
 
     if (isSupabaseConfigured && user && targetTx) {
-      await deletePortfolioItemFromSupabase(user.id, targetTx.symbol);
+      await deletePortfolioItemFromSupabase(user.id, targetTx.symbol, targetTx.id);
     }
   };
 

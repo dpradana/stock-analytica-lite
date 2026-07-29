@@ -425,7 +425,7 @@ export default function StockAnalysis({ initialSymbol = 'AAPL', livePrices }: St
       {/* Stock Information Card */}
       <div className="glass-panel p-6 rounded-2xl border-slate-800/85 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-accent-cyan/20 to-accent-blue/10 border border-accent-cyan/30 flex items-center justify-center font-extrabold text-lg text-accent-cyan shrink-0">
+          <div className="h-14 min-w-[3.5rem] px-3.5 rounded-2xl bg-gradient-to-tr from-accent-cyan/20 to-accent-blue/10 border border-accent-cyan/30 flex items-center justify-center font-extrabold text-sm sm:text-base text-accent-cyan shrink-0 whitespace-nowrap shadow-lg shadow-accent-cyan/5">
             {symbol}
           </div>
           <div>

@@ -130,6 +130,14 @@ export default function PortfolioTracker({
   const currencyCode = selectedStockInfo?.currency || 'IDR';
   const currencySymbol = currencyCode === 'USD' ? '$' : 'Rp';
 
+  // Dynamic 1-Year Dividend Gain Estimation
+  const totalPortfolioValue = portfolio.reduce((acc, p) => acc + p.currentValue, 0);
+  const estAnnualDividend = portfolio.reduce((acc, item) => {
+    const yieldPct = item.symbol.endsWith('.JK') ? 0.048 : 0.018; // 4.8% for IDX, 1.8% for US stocks
+    return acc + (item.currentValue * yieldPct);
+  }, 0);
+  const portfolioYieldPct = totalPortfolioValue > 0 ? (estAnnualDividend / totalPortfolioValue) * 100 : 0;
+
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6 pb-16 overflow-y-auto no-scrollbar md:ml-72">
       {/* Title Header & Action Toolbar */}
@@ -179,10 +187,38 @@ export default function PortfolioTracker({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Positions Summary Table (Left Columns) */}
         <div className="lg:col-span-2 space-y-6">
+          {/* 1-Year Dividend Gain Estimate Summary Banner */}
+          {portfolio.length > 0 && (
+            <div className="bg-gradient-to-r from-indigo-950/60 via-slate-900/60 to-emerald-950/60 border border-indigo-500/30 p-5 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 backdrop-blur-xl">
+              <div>
+                <div className="flex items-center gap-2 text-indigo-400 font-bold text-xs uppercase tracking-wider">
+                  <DollarSign className="w-4 h-4" /> 1-Year Dividend Gain Estimate
+                </div>
+                <div className="text-2xl font-black text-emerald-400 mt-1">
+                  {formatCurrency(estAnnualDividend, 'IDR')}
+                </div>
+                <p className="text-[11px] text-slate-400 mt-0.5">
+                  Calculated based on current holding valuations (IDX: 4.8% yield | US: 1.8% yield)
+                </p>
+              </div>
+              <div className="bg-slate-900/80 border border-slate-800 px-4 py-2.5 rounded-xl text-right">
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Weighted Portfolio Yield</span>
+                <span className="text-lg font-bold text-indigo-300">{portfolioYieldPct.toFixed(2)}%</span>
+              </div>
+            </div>
+          )}
+
           <div className="glass-panel rounded-2xl border-slate-800/85 overflow-hidden">
-            <div className="p-5 border-b border-slate-800/80 flex items-center gap-2">
-              <Briefcase className="h-5 w-5 text-accent-cyan" />
-              <h3 className="font-bold text-base text-slate-200">Active Positions</h3>
+            <div className="p-5 border-b border-slate-800/80 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Briefcase className="h-5 w-5 text-accent-cyan" />
+                <h3 className="font-bold text-base text-slate-200">Active Positions</h3>
+              </div>
+              {portfolio.length > 0 && (
+                <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg">
+                  Est. Annual Income: {formatCurrency(estAnnualDividend, 'IDR')}
+                </span>
+              )}
             </div>
             
             <div className="overflow-x-auto">
@@ -578,22 +614,38 @@ export default function PortfolioTracker({
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
-                    <span className="text-xs text-slate-400">Est. Annual Dividend Income</span>
-                    <div className="text-xl font-extrabold text-emerald-400 mt-1">Rp 7.500.000</div>
+                    <span className="text-xs text-slate-400">Est. 1-Year Dividend Gain</span>
+                    <div className="text-xl font-extrabold text-emerald-400 mt-1">
+                      {formatCurrency(estAnnualDividend, 'IDR')}
+                    </div>
                   </div>
                   <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
                     <span className="text-xs text-slate-400">Portfolio Dividend Yield</span>
-                    <div className="text-xl font-extrabold text-indigo-400 mt-1">4.8%</div>
+                    <div className="text-xl font-extrabold text-indigo-400 mt-1">
+                      {portfolioYieldPct.toFixed(2)}%
+                    </div>
                   </div>
                 </div>
 
                 <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl space-y-2">
                   <h4 className="text-xs font-bold text-slate-300 uppercase">Quarterly Payout Schedule</h4>
                   <div className="grid grid-cols-4 gap-2 text-center text-xs">
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q1</span><div className="font-bold text-slate-200 mt-0.5">Rp 1.500.000</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q2</span><div className="font-bold text-slate-200 mt-0.5">Rp 2.250.000</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q3</span><div className="font-bold text-slate-200 mt-0.5">Rp 1.750.000</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q4</span><div className="font-bold text-slate-200 mt-0.5">Rp 2.000.000</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg">
+                      <span className="text-slate-500">Q1 (20%)</span>
+                      <div className="font-bold text-slate-200 mt-0.5">{formatCurrency(estAnnualDividend * 0.20, 'IDR')}</div>
+                    </div>
+                    <div className="bg-slate-900 p-2 rounded-lg">
+                      <span className="text-slate-500">Q2 (30%)</span>
+                      <div className="font-bold text-slate-200 mt-0.5">{formatCurrency(estAnnualDividend * 0.30, 'IDR')}</div>
+                    </div>
+                    <div className="bg-slate-900 p-2 rounded-lg">
+                      <span className="text-slate-500">Q3 (22%)</span>
+                      <div className="font-bold text-slate-200 mt-0.5">{formatCurrency(estAnnualDividend * 0.22, 'IDR')}</div>
+                    </div>
+                    <div className="bg-slate-900 p-2 rounded-lg">
+                      <span className="text-slate-500">Q4 (28%)</span>
+                      <div className="font-bold text-slate-200 mt-0.5">{formatCurrency(estAnnualDividend * 0.28, 'IDR')}</div>
+                    </div>
                   </div>
                 </div>
               </div>

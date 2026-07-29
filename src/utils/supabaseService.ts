@@ -87,10 +87,29 @@ export async function checkUserAuthorization(userId: string): Promise<{ isAuthor
   }
 }
 
-// 2. Portfolio Items Sync (`portfolio_items` table: id, user_id, ticker, lot, avg_buy)
+// 2. Transactions & Portfolio Items Sync
 export async function fetchUserPortfolioItems(userId: string): Promise<Transaction[]> {
   if (!isSupabaseConfigured || !supabase) return [];
   try {
+    // First try fetching detailed transaction logs from `transactions` table
+    const { data: txData, error: txError } = await supabase
+      .from('transactions')
+      .select('*')
+      .eq('user_id', userId)
+      .order('date', { ascending: true });
+
+    if (!txError && txData && txData.length > 0) {
+      return txData.map((t: any) => ({
+        id: String(t.id),
+        symbol: t.symbol,
+        type: t.type || 'BUY',
+        price: Number(t.price || 0),
+        quantity: Number(t.quantity || 0),
+        date: t.date || (t.created_at ? new Date(t.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0])
+      }));
+    }
+
+    // Fallback: fetch from `portfolio_items` table if `transactions` table is empty
     const { data, error } = await supabase
       .from('portfolio_items')
       .select('*')
@@ -110,15 +129,39 @@ export async function fetchUserPortfolioItems(userId: string): Promise<Transacti
       date: item.created_at ? new Date(item.created_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
     }));
   } catch (err) {
-    console.error('Error fetching portfolio_items:', err);
+    console.error('Error fetching transactions/portfolio_items:', err);
     return [];
   }
 }
 
-export async function savePortfolioItemToSupabase(userId: string, symbol: string, lot: number, avgBuy: number): Promise<boolean> {
+export async function savePortfolioItemToSupabase(
+  userId: string, 
+  symbol: string, 
+  quantity: number, 
+  price: number,
+  date?: string
+): Promise<boolean> {
   if (!isSupabaseConfigured || !supabase) return false;
   try {
-    // Check if item exists for this user
+    const txDate = date || new Date().toISOString().split('T')[0];
+
+    // 1. Insert into `transactions` table for full order log history
+    const { error: txErr } = await supabase
+      .from('transactions')
+      .insert([{
+        user_id: userId,
+        symbol: symbol,
+        type: 'BUY',
+        price: price,
+        quantity: quantity,
+        date: txDate
+      }]);
+
+    if (txErr) {
+      console.warn('Transactions insert warning (table might need to be created):', txErr.message);
+    }
+
+    // 2. Insert or update `portfolio_items` table for net position
     const { data: existing } = await supabase
       .from('portfolio_items')
       .select('id, lot, avg_buy')
@@ -127,10 +170,9 @@ export async function savePortfolioItemToSupabase(userId: string, symbol: string
       .limit(1);
 
     if (existing && existing.length > 0) {
-      // Update existing position
       const current = existing[0];
-      const newLot = Number(current.lot) + lot;
-      const newAvgBuy = ((Number(current.lot) * Number(current.avg_buy)) + (lot * avgBuy)) / newLot;
+      const newLot = Number(current.lot) + quantity;
+      const newAvgBuy = ((Number(current.lot) * Number(current.avg_buy)) + (quantity * price)) / newLot;
 
       const { error } = await supabase
         .from('portfolio_items')
@@ -143,14 +185,13 @@ export async function savePortfolioItemToSupabase(userId: string, symbol: string
 
       return !error;
     } else {
-      // Insert new position
       const { error } = await supabase
         .from('portfolio_items')
         .insert([{
           user_id: userId,
           ticker: symbol,
-          lot: lot,
-          avg_buy: avgBuy,
+          lot: quantity,
+          avg_buy: price,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }]);
@@ -158,14 +199,20 @@ export async function savePortfolioItemToSupabase(userId: string, symbol: string
       return !error;
     }
   } catch (err) {
-    console.error('Error saving portfolio_item:', err);
+    console.error('Error saving transaction/portfolio_item:', err);
     return false;
   }
 }
 
-export async function deletePortfolioItemFromSupabase(userId: string, symbol: string): Promise<boolean> {
+export async function deletePortfolioItemFromSupabase(userId: string, symbol: string, txId?: string): Promise<boolean> {
   if (!isSupabaseConfigured || !supabase) return false;
   try {
+    // Delete from `transactions` if ID provided
+    if (txId && !txId.startsWith('tx-')) {
+      await supabase.from('transactions').delete().eq('id', txId);
+    }
+
+    // Delete from `portfolio_items`
     const { error } = await supabase
       .from('portfolio_items')
       .delete()
@@ -174,7 +221,7 @@ export async function deletePortfolioItemFromSupabase(userId: string, symbol: st
 
     return !error;
   } catch (err) {
-    console.error('Error deleting portfolio_item:', err);
+    console.error('Error deleting transaction/portfolio_item:', err);
     return false;
   }
 }
