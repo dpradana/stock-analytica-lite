@@ -32,9 +32,9 @@ export default function PortfolioTracker({
 }: PortfolioTrackerProps) {
   
   // Form states
-  const [symbol, setSymbol] = useState('AAPL');
-  const [price, setPrice] = useState('189.84');
-  const [quantity, setQuantity] = useState('10');
+  const [symbol, setSymbol] = useState('BBCA.JK');
+  const [price, setPrice] = useState('10250');
+  const [quantity, setQuantity] = useState('100');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [error, setError] = useState('');
 
@@ -44,10 +44,10 @@ export default function PortfolioTracker({
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStockInfo, setSelectedStockInfo] = useState<any>({
-    symbol: 'AAPL',
-    name: 'Apple Inc.',
-    currency: 'USD',
-    price: 189.84
+    symbol: 'BBCA.JK',
+    name: 'Bank Central Asia Tbk',
+    currency: 'IDR',
+    price: 10250
   });
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -125,10 +125,10 @@ export default function PortfolioTracker({
   };
 
   const [activeModal, setActiveModal] = useState<'smartbuy' | 'fixport' | 'rebalance' | 'divstrat' | 'compounding' | null>(null);
-  const [smartBuyBudget, setSmartBuyBudget] = useState('5000');
+  const [smartBuyBudget, setSmartBuyBudget] = useState('10000000');
 
-  const currencyCode = selectedStockInfo?.currency || (symbol.endsWith('.JK') ? 'IDR' : 'USD');
-  const currencySymbol = currencyCode === 'IDR' ? 'Rp' : '$';
+  const currencyCode = selectedStockInfo?.currency || 'IDR';
+  const currencySymbol = currencyCode === 'USD' ? '$' : 'Rp';
 
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6 pb-16 overflow-y-auto no-scrollbar md:ml-72">
@@ -458,7 +458,7 @@ export default function PortfolioTracker({
             {activeModal === 'smartbuy' && (
               <div className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Available Fresh Capital Budget ($)</label>
+                  <label className="text-xs font-semibold text-slate-400">Available Fresh Capital Budget (Rp)</label>
                   <input
                     type="number"
                     value={smartBuyBudget}
@@ -471,10 +471,10 @@ export default function PortfolioTracker({
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Recommended Allocation Strategy</h4>
                   {portfolio.length > 0 ? (
                     portfolio.map((item, idx) => {
-                      const budgetNum = parseFloat(smartBuyBudget) || 1000;
+                      const budgetNum = parseFloat(smartBuyBudget) || 10000000;
                       const allocPct = idx === 0 ? 0.4 : idx === 1 ? 0.35 : 0.25 / (portfolio.length - 2 || 1);
                       const allocAmount = Math.round(budgetNum * allocPct);
-                      const estShares = (allocAmount / item.currentPrice).toFixed(2);
+                      const estShares = (allocAmount / item.currentPrice).toFixed(0);
                       return (
                         <div key={item.symbol} className="flex justify-between items-center bg-slate-900/60 p-3 rounded-lg text-xs">
                           <div>
@@ -482,7 +482,7 @@ export default function PortfolioTracker({
                             <div className="text-[11px] text-slate-400">Buy ~{estShares} shares</div>
                           </div>
                           <div className="text-right">
-                            <span className="font-bold text-emerald-400">${allocAmount.toLocaleString()}</span>
+                            <span className="font-bold text-emerald-400">{formatCurrency(allocAmount, 'IDR')}</span>
                             <div className="text-[10px] text-slate-500">{(allocPct * 100).toFixed(0)}% weight</div>
                           </div>
                         </div>
@@ -501,35 +501,38 @@ export default function PortfolioTracker({
                 <p className="text-xs text-slate-400">Automated diagnostic audit scanning positions for stop-loss risks, overconcentration, or margin drag.</p>
                 
                 <div className="space-y-2">
-                  {portfolio.map((item) => {
-                    const isHighLoss = item.totalGainLossPercentage < -5;
-                    const isOverweight = item.totalQuantity * item.currentPrice > 5000;
-                    let action = 'HOLD';
-                    let reason = 'Position operating within healthy risk boundaries.';
-                    let badgeColor = 'bg-slate-800 text-slate-300';
+                  {portfolio.length > 0 ? (
+                    portfolio.map((item) => {
+                      const isHighLoss = item.totalGainLossPercentage < -5;
+                      let action = 'HOLD';
+                      let reason = 'Position operating within healthy risk boundaries.';
+                      let badgeColor = 'bg-slate-800 text-slate-300';
 
-                    if (isHighLoss) {
-                      action = 'AVERAGE_BUY / CUT_LOSS';
-                      reason = 'Loss exceeds -5%. Check RSI oversold confirmation for rebound or trim position.';
-                      badgeColor = 'bg-rose-500/20 text-rose-400 border border-rose-500/30';
-                    } else if (item.totalGainLossPercentage > 10) {
-                      action = 'TAKE_PROFIT';
-                      reason = 'Gain exceeds +10%. Lock in partial profits.';
-                      badgeColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-                    }
+                      if (isHighLoss) {
+                        action = 'AVERAGE_BUY / CUT_LOSS';
+                        reason = 'Loss exceeds -5%. Check RSI oversold confirmation for rebound or trim position.';
+                        badgeColor = 'bg-rose-500/20 text-rose-400 border border-rose-500/30';
+                      } else if (item.totalGainLossPercentage > 10) {
+                        action = 'TAKE_PROFIT';
+                        reason = 'Gain exceeds +10%. Lock in partial profits.';
+                        badgeColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+                      }
 
-                    return (
-                      <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex items-center justify-between text-xs">
-                        <div className="space-y-1">
-                          <div className="font-bold text-slate-200 text-sm flex items-center gap-2">
-                            {item.symbol}
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${badgeColor}`}>{action}</span>
+                      return (
+                        <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex items-center justify-between text-xs">
+                          <div className="space-y-1">
+                            <div className="font-bold text-slate-200 text-sm flex items-center gap-2">
+                              {item.symbol}
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${badgeColor}`}>{action}</span>
+                            </div>
+                            <p className="text-slate-400">{reason}</p>
                           </div>
-                          <p className="text-slate-400">{reason}</p>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  ) : (
+                    <p className="text-xs text-slate-500">No active positions to audit. Add a position to run diagnostics.</p>
+                  )}
                 </div>
               </div>
             )}
@@ -539,29 +542,33 @@ export default function PortfolioTracker({
               <div className="space-y-4">
                 <p className="text-xs text-slate-400">Compares actual position weights against equal-weighted model targets.</p>
                 <div className="space-y-3">
-                  {portfolio.map((item) => {
-                    const totalVal = portfolio.reduce((acc, p) => acc + p.currentValue, 0);
-                    const actualPct = totalVal > 0 ? (item.currentValue / totalVal) * 100 : 0;
-                    const targetPct = 100 / portfolio.length;
-                    const diffPct = actualPct - targetPct;
+                  {portfolio.length > 0 ? (
+                    portfolio.map((item) => {
+                      const totalVal = portfolio.reduce((acc, p) => acc + p.currentValue, 0);
+                      const actualPct = totalVal > 0 ? (item.currentValue / totalVal) * 100 : 0;
+                      const targetPct = 100 / portfolio.length;
+                      const diffPct = actualPct - targetPct;
 
-                    return (
-                      <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
-                        <div className="flex justify-between font-bold text-slate-200">
-                          <span>{item.symbol}</span>
-                          <span>Actual: {actualPct.toFixed(1)}% | Target: {targetPct.toFixed(1)}%</span>
+                      return (
+                        <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
+                          <div className="flex justify-between font-bold text-slate-200">
+                            <span>{item.symbol}</span>
+                            <span>Actual: {actualPct.toFixed(1)}% | Target: {targetPct.toFixed(1)}%</span>
+                          </div>
+                          <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                            <div className="bg-blue-500 h-full rounded-full" style={{ width: `${Math.min(actualPct, 100)}%` }} />
+                          </div>
+                          <div className="text-right font-semibold text-slate-400">
+                            {diffPct > 2 ? <span className="text-amber-400">Overweight: Trim ~{diffPct.toFixed(1)}%</span> :
+                             diffPct < -2 ? <span className="text-emerald-400">Underweight: Add ~{Math.abs(diffPct).toFixed(1)}%</span> :
+                             <span className="text-slate-500">Balanced</span>}
+                          </div>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                          <div className="bg-blue-500 h-full rounded-full" style={{ width: `${Math.min(actualPct, 100)}%` }} />
-                        </div>
-                        <div className="text-right font-semibold text-slate-400">
-                          {diffPct > 2 ? <span className="text-amber-400">Overweight: Trim ~{diffPct.toFixed(1)}%</span> :
-                           diffPct < -2 ? <span className="text-emerald-400">Underweight: Add ~{Math.abs(diffPct).toFixed(1)}%</span> :
-                           <span className="text-slate-500">Balanced</span>}
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })
+                  ) : (
+                    <p className="text-xs text-slate-500">No active positions to rebalance.</p>
+                  )}
                 </div>
               </div>
             )}
@@ -572,21 +579,21 @@ export default function PortfolioTracker({
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
                     <span className="text-xs text-slate-400">Est. Annual Dividend Income</span>
-                    <div className="text-xl font-extrabold text-emerald-400 mt-1">$485.20</div>
+                    <div className="text-xl font-extrabold text-emerald-400 mt-1">Rp 7.500.000</div>
                   </div>
                   <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
                     <span className="text-xs text-slate-400">Portfolio Dividend Yield</span>
-                    <div className="text-xl font-extrabold text-indigo-400 mt-1">4.2%</div>
+                    <div className="text-xl font-extrabold text-indigo-400 mt-1">4.8%</div>
                   </div>
                 </div>
 
                 <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl space-y-2">
                   <h4 className="text-xs font-bold text-slate-300 uppercase">Quarterly Payout Schedule</h4>
                   <div className="grid grid-cols-4 gap-2 text-center text-xs">
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q1</span><div className="font-bold text-slate-200 mt-0.5">$95.00</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q2</span><div className="font-bold text-slate-200 mt-0.5">$140.20</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q3</span><div className="font-bold text-slate-200 mt-0.5">$110.00</div></div>
-                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q4</span><div className="font-bold text-slate-200 mt-0.5">$140.00</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q1</span><div className="font-bold text-slate-200 mt-0.5">Rp 1.500.000</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q2</span><div className="font-bold text-slate-200 mt-0.5">Rp 2.250.000</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q3</span><div className="font-bold text-slate-200 mt-0.5">Rp 1.750.000</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q4</span><div className="font-bold text-slate-200 mt-0.5">Rp 2.000.000</div></div>
                   </div>
                 </div>
               </div>

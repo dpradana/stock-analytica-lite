@@ -211,7 +211,7 @@ export default function ScreenersView({ onSelectTickerForAnalysis, livePrices }:
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="flex-1 space-y-6 p-4 md:p-8 pt-6 pb-16 overflow-y-auto no-scrollbar md:ml-72">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900/60 border border-slate-800 p-6 rounded-2xl backdrop-blur-xl">
         <div>

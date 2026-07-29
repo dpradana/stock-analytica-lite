@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   LayoutDashboard, 
   TrendingUp, 
@@ -7,16 +7,22 @@ import {
   Menu, 
   X,
   Sparkles,
-  Target
+  Target,
+  User,
+  LogIn,
+  LogOut
 } from 'lucide-react';
 import { ActiveTab } from '../types/stock';
 
 interface SidebarProps {
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
+  user?: any;
+  onOpenAuth?: () => void;
+  onLogout?: () => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
+export default function Sidebar({ activeTab, setActiveTab, user, onOpenAuth, onLogout }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -116,10 +122,38 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           })}
         </nav>
 
-        <div className="mt-auto pt-6 border-t border-slate-800/60 text-center">
-          <div className="px-4 py-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
-            <p className="text-[11px] text-slate-500 font-medium">REAL-TIME SIMULATED DATA</p>
-            <p className="text-[10px] text-accent-cyan/60 mt-1">Portfolio persists in LocalStorage</p>
+        <div className="mt-auto pt-6 border-t border-slate-800/60 space-y-3">
+          {user ? (
+            <div className="bg-slate-900/60 border border-slate-800 p-3 rounded-xl flex items-center justify-between">
+              <div className="flex items-center gap-2 max-w-[150px]">
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0 font-bold text-xs">
+                  {(user.display_name || user.username || 'U').charAt(0).toUpperCase()}
+                </div>
+                <div className="truncate text-left">
+                  <div className="text-xs font-bold text-slate-200 truncate">{user.display_name || user.username}</div>
+                  <div className="text-[10px] text-emerald-400 font-semibold">{user.role || 'Authorized'}</div>
+                </div>
+              </div>
+              <button
+                onClick={onLogout}
+                title="Sign out"
+                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onOpenAuth}
+              className="w-full py-2.5 px-3 bg-gradient-to-r from-indigo-600/20 to-emerald-500/20 hover:from-indigo-600/30 hover:to-emerald-500/30 border border-indigo-500/30 rounded-xl text-xs font-bold text-indigo-300 flex items-center justify-center gap-2 transition-all cursor-pointer"
+            >
+              <LogIn className="w-4 h-4 text-indigo-400" />
+              Google / Email Login
+            </button>
+          )}
+
+          <div className="px-3 py-2 bg-slate-900/40 rounded-xl border border-slate-800/60 text-center">
+            <p className="text-[10px] text-slate-500 font-medium">REAL-TIME STOCK ANALYTICA</p>
           </div>
         </div>
       </aside>

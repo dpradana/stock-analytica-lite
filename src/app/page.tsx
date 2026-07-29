@@ -9,6 +9,14 @@ import StockAnalysis from '../components/StockAnalysis';
 import PortfolioTracker from '../components/PortfolioTracker';
 import RiskAllocations from '../components/RiskAllocations';
 import ScreenersView from '../components/ScreenersView';
+import AuthModal from '../components/AuthModal';
+import { 
+  fetchUserPortfolioItems, 
+  savePortfolioItemToSupabase, 
+  deletePortfolioItemFromSupabase,
+  UserProfile
+} from '../utils/supabaseService';
+import { isSupabaseConfigured } from '../utils/supabase';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -18,6 +26,10 @@ export default function Home() {
   const [indices, setIndices] = useState<IndexInfo[]>([]);
   const [quotes, setQuotes] = useState<Record<string, any>>({});
   const [portfolioHistories, setPortfolioHistories] = useState<Record<string, number[]>>({});
+
+  // Auth State
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   // Live prices state initialized with default ticker prices
   const [livePrices, setLivePrices] = useState<Record<string, number>>(() => {
@@ -66,12 +78,30 @@ export default function Home() {
     }
   };
 
-  // Client-side hydration safety + initial seed data
+  // On mount: restore user session from localStorage, fetch portfolio
   useEffect(() => {
-    const runOnMount = () => {
+    const runOnMount = async () => {
       setIsMounted(true);
       setIndices(getMockMarketIndices());
-      
+
+      // Restore saved user session
+      const savedUser = localStorage.getItem('stock_analytica_user');
+      if (savedUser && isSupabaseConfigured) {
+        try {
+          const parsedUser: UserProfile = JSON.parse(savedUser);
+          setUser(parsedUser);
+          const userTx = await fetchUserPortfolioItems(parsedUser.id);
+          if (userTx.length > 0) {
+            setTransactions(userTx);
+            localStorage.setItem('stock_analytica_transactions', JSON.stringify(userTx));
+            return;
+          }
+        } catch (e) {
+          console.error("Failed to restore user session", e);
+          localStorage.removeItem('stock_analytica_user');
+        }
+      }
+
       const saved = localStorage.getItem('stock_analytica_transactions');
       if (saved) {
         try {
@@ -80,21 +110,25 @@ export default function Home() {
           console.error("Failed to parse transactions", e);
         }
       } else {
-        // Premium initial mock data so the screen isn't empty!
-        const defaultTx: Transaction[] = [
-          { id: 'tx-1', symbol: 'AAPL', type: 'BUY', price: 182.30, quantity: 15, date: '2026-03-10' },
-          { id: 'tx-2', symbol: 'MSFT', type: 'BUY', price: 412.50, quantity: 8, date: '2026-04-15' },
-          { id: 'tx-3', symbol: 'NVDA', type: 'BUY', price: 885.00, quantity: 6, date: '2026-05-20' },
-          { id: 'tx-4', symbol: 'GOOGL', type: 'BUY', price: 172.10, quantity: 12, date: '2026-06-01' }
-        ];
-        setTransactions(defaultTx);
-        localStorage.setItem('stock_analytica_transactions', JSON.stringify(defaultTx));
+        setTransactions([]);
+        localStorage.setItem('stock_analytica_transactions', JSON.stringify([]));
       }
     };
 
-    const timeoutId = setTimeout(runOnMount, 0);
-    return () => clearTimeout(timeoutId);
+    runOnMount();
   }, []);
+
+  // After login success: persist user and fetch their portfolio
+  const handleLoginSuccess = async (loggedInUser: UserProfile) => {
+    setUser(loggedInUser);
+    localStorage.setItem('stock_analytica_user', JSON.stringify(loggedInUser));
+
+    if (isSupabaseConfigured) {
+      const userTx = await fetchUserPortfolioItems(loggedInUser.id);
+      setTransactions(userTx);
+      localStorage.setItem('stock_analytica_transactions', JSON.stringify(userTx));
+    }
+  };
 
   // Poll live quotes periodically
   useEffect(() => {
@@ -278,7 +312,7 @@ export default function Home() {
 
 
   // CRUD positions handlers
-  const handleAddTransaction = (newTx: Omit<Transaction, 'id'>) => {
+  const handleAddTransaction = async (newTx: Omit<Transaction, 'id'>) => {
     const transaction: Transaction = {
       ...newTx,
       id: `tx-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
@@ -286,12 +320,28 @@ export default function Home() {
     const updated = [...transactions, transaction];
     setTransactions(updated);
     localStorage.setItem('stock_analytica_transactions', JSON.stringify(updated));
+
+    if (isSupabaseConfigured && user) {
+      await savePortfolioItemToSupabase(user.id, transaction.symbol, transaction.quantity, transaction.price);
+    }
   };
 
-  const handleDeleteTransaction = (id: string) => {
+  const handleDeleteTransaction = async (id: string) => {
+    const targetTx = transactions.find(t => t.id === id);
     const updated = transactions.filter(t => t.id !== id);
     setTransactions(updated);
     localStorage.setItem('stock_analytica_transactions', JSON.stringify(updated));
+
+    if (isSupabaseConfigured && user && targetTx) {
+      await deletePortfolioItemFromSupabase(user.id, targetTx.symbol);
+    }
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setTransactions([]);
+    localStorage.removeItem('stock_analytica_user');
+    localStorage.removeItem('stock_analytica_transactions');
   };
 
   const handleNavigateToAnalysis = (ticker: string) => {
@@ -315,7 +365,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen relative overflow-hidden bg-background">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab}
+        user={user}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onLogout={handleLogout}
+      />
       
       <main className="flex-1 flex flex-col min-w-0">
         {activeTab === 'dashboard' && (
@@ -358,6 +414,13 @@ export default function Home() {
           />
         )}
       </main>
+
+      <AuthModal 
+        isOpen={isAuthOpen} 
+        onClose={() => setIsAuthOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </div>
   );
 }
+

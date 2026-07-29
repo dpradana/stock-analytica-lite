@@ -22,6 +22,8 @@ import {
 } from 'lucide-react';
 import { IndicatorDataPoint, ActionAnalysis, CagrPoint, NewsItem } from '../types/stock';
 import { addIndicators, formatCurrency } from '../utils/stockUtils';
+import { fetchUserWatchlistItems, toggleWatchlistInSupabase } from '../utils/supabaseService';
+import { supabase, isSupabaseConfigured } from '../utils/supabase';
 
 interface StockAnalysisProps {
   initialSymbol?: string;
@@ -211,12 +213,38 @@ export default function StockAnalysis({ initialSymbol = 'AAPL', livePrices }: St
     return ['AAPL', 'BBCA.JK', 'NVDA'];
   });
 
-  const toggleFavorite = (ticker: string) => {
-    const next = favorites.includes(ticker)
-      ? favorites.filter(t => t !== ticker)
-      : [...favorites, ticker];
+  // Sync watchlist from Supabase on mount
+  useEffect(() => {
+    const syncWatchlist = async () => {
+      if (isSupabaseConfigured && supabase) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          const supaList = await fetchUserWatchlistItems(session.user.id);
+          if (supaList.length > 0) {
+            setFavorites(supaList);
+            localStorage.setItem('stock_analytica_favorites', JSON.stringify(supaList));
+          }
+        }
+      }
+    };
+    syncWatchlist();
+  }, []);
+
+  const toggleFavorite = async (ticker: string) => {
+    const isAdding = !favorites.includes(ticker);
+    const next = isAdding
+      ? [...favorites, ticker]
+      : favorites.filter(t => t !== ticker);
+
     setFavorites(next);
     localStorage.setItem('stock_analytica_favorites', JSON.stringify(next));
+
+    if (isSupabaseConfigured && supabase) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        await toggleWatchlistInSupabase(session.user.id, ticker, isAdding);
+      }
+    }
   };
 
   const isFavorite = favorites.includes(symbol);

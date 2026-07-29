@@ -112,14 +112,14 @@ export function addIndicators(data: StockDataPoint[]): IndicatorDataPoint[] {
   }));
 }
 
-// Format currency based on the code (IDR -> Rp, others -> $)
-export function formatCurrency(value: number, currencyCode?: string): string {
-  const isIDR = currencyCode === 'IDR';
-  if (isIDR) {
-    return 'Rp ' + Math.round(value).toLocaleString('id-ID');
+// Format currency based on the code (Default IDR -> Rp, USD -> $)
+export function formatCurrency(value: number, currencyCode: string = 'IDR'): string {
+  const isUSD = currencyCode === 'USD';
+  if (isUSD) {
+    return '$' + value.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
   }
-  return '$' + value.toLocaleString('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
+  return 'Rp ' + Math.round(value).toLocaleString('id-ID');
 }
