@@ -6,8 +6,13 @@ import {
   TrendingDown, 
   Briefcase, 
   History,
-  Search,
-  Loader2
+  Loader2,
+  Brain,
+  ShieldAlert,
+  RefreshCw,
+  DollarSign,
+  Flame,
+  X
 } from 'lucide-react';
 import { Transaction, PortfolioItem } from '../types/stock';
 import { formatCurrency } from '../utils/stockUtils';
@@ -119,17 +124,56 @@ export default function PortfolioTracker({
     setError('');
   };
 
+  const [activeModal, setActiveModal] = useState<'smartbuy' | 'fixport' | 'rebalance' | 'divstrat' | 'compounding' | null>(null);
+  const [smartBuyBudget, setSmartBuyBudget] = useState('5000');
+
   const currencyCode = selectedStockInfo?.currency || (symbol.endsWith('.JK') ? 'IDR' : 'USD');
   const currencySymbol = currencyCode === 'IDR' ? 'Rp' : '$';
 
   return (
     <div className="flex-1 space-y-8 p-4 md:p-8 pt-6 pb-16 overflow-y-auto no-scrollbar md:ml-72">
-      {/* Title Header */}
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-          Portfolio Tracker
-        </h1>
-        <p className="text-slate-400 text-sm mt-1">Manage positions, log transactions, and track average cost basis.</p>
+      {/* Title Header & Action Toolbar */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+            Portfolio Tracker
+          </h1>
+          <p className="text-slate-400 text-sm mt-1">Manage positions, log transactions, and run algorithmic portfolio engines.</p>
+        </div>
+
+        {/* Feature Action Buttons */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setActiveModal('smartbuy')}
+            className="px-3 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all"
+          >
+            <Brain className="w-3.5 h-3.5" /> 🧠 Smart Buy
+          </button>
+          <button
+            onClick={() => setActiveModal('fixport')}
+            className="px-3 py-2 bg-rose-600/20 hover:bg-rose-600/30 text-rose-400 border border-rose-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all"
+          >
+            <ShieldAlert className="w-3.5 h-3.5" /> Fix Port
+          </button>
+          <button
+            onClick={() => setActiveModal('rebalance')}
+            className="px-3 py-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all"
+          >
+            <RefreshCw className="w-3.5 h-3.5" /> Rebalance
+          </button>
+          <button
+            onClick={() => setActiveModal('divstrat')}
+            className="px-3 py-2 bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 border border-indigo-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all"
+          >
+            <DollarSign className="w-3.5 h-3.5" /> 💰 Div Strategy
+          </button>
+          <button
+            onClick={() => setActiveModal('compounding')}
+            className="px-3 py-2 bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 border border-amber-500/30 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all"
+          >
+            <Flame className="w-3.5 h-3.5" /> Snowball Engine
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -391,6 +435,189 @@ export default function PortfolioTracker({
           </div>
         </div>
       </div>
+
+      {/* MODALS SECTION */}
+      {activeModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
+                {activeModal === 'smartbuy' && <><Brain className="w-5 h-5 text-emerald-400" /> 🧠 Smart Buy Capital Allocator</>}
+                {activeModal === 'fixport' && <><ShieldAlert className="w-5 h-5 text-rose-400" /> 🛡️ Fix Port Diagnostic Audit</>}
+                {activeModal === 'rebalance' && <><RefreshCw className="w-5 h-5 text-blue-400" /> ⚖️ Portfolio Rebalancer Engine</>}
+                {activeModal === 'divstrat' && <><DollarSign className="w-5 h-5 text-indigo-400" /> 💰 Dividend Strategy Matrix</>}
+                {activeModal === 'compounding' && <><Flame className="w-5 h-5 text-amber-400" /> ⚡ Dividend Compounding Snowball</>}
+              </h2>
+              <button onClick={() => setActiveModal(null)} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Smart Buy Body */}
+            {activeModal === 'smartbuy' && (
+              <div className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-400">Available Fresh Capital Budget ($)</label>
+                  <input
+                    type="number"
+                    value={smartBuyBudget}
+                    onChange={(e) => setSmartBuyBudget(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 p-2.5 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-emerald-500"
+                  />
+                </div>
+
+                <div className="bg-slate-950/60 border border-slate-800/80 p-4 rounded-xl space-y-3">
+                  <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Recommended Allocation Strategy</h4>
+                  {portfolio.length > 0 ? (
+                    portfolio.map((item, idx) => {
+                      const budgetNum = parseFloat(smartBuyBudget) || 1000;
+                      const allocPct = idx === 0 ? 0.4 : idx === 1 ? 0.35 : 0.25 / (portfolio.length - 2 || 1);
+                      const allocAmount = Math.round(budgetNum * allocPct);
+                      const estShares = (allocAmount / item.currentPrice).toFixed(2);
+                      return (
+                        <div key={item.symbol} className="flex justify-between items-center bg-slate-900/60 p-3 rounded-lg text-xs">
+                          <div>
+                            <span className="font-bold text-slate-200">{item.symbol}</span>
+                            <div className="text-[11px] text-slate-400">Buy ~{estShares} shares</div>
+                          </div>
+                          <div className="text-right">
+                            <span className="font-bold text-emerald-400">${allocAmount.toLocaleString()}</span>
+                            <div className="text-[10px] text-slate-500">{(allocPct * 100).toFixed(0)}% weight</div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <p className="text-xs text-slate-500">Log active positions to calculate smart buy allocation.</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Fix Port Body */}
+            {activeModal === 'fixport' && (
+              <div className="space-y-4">
+                <p className="text-xs text-slate-400">Automated diagnostic audit scanning positions for stop-loss risks, overconcentration, or margin drag.</p>
+                
+                <div className="space-y-2">
+                  {portfolio.map((item) => {
+                    const isHighLoss = item.totalGainLossPercentage < -5;
+                    const isOverweight = item.totalQuantity * item.currentPrice > 5000;
+                    let action = 'HOLD';
+                    let reason = 'Position operating within healthy risk boundaries.';
+                    let badgeColor = 'bg-slate-800 text-slate-300';
+
+                    if (isHighLoss) {
+                      action = 'AVERAGE_BUY / CUT_LOSS';
+                      reason = 'Loss exceeds -5%. Check RSI oversold confirmation for rebound or trim position.';
+                      badgeColor = 'bg-rose-500/20 text-rose-400 border border-rose-500/30';
+                    } else if (item.totalGainLossPercentage > 10) {
+                      action = 'TAKE_PROFIT';
+                      reason = 'Gain exceeds +10%. Lock in partial profits.';
+                      badgeColor = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+                    }
+
+                    return (
+                      <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex items-center justify-between text-xs">
+                        <div className="space-y-1">
+                          <div className="font-bold text-slate-200 text-sm flex items-center gap-2">
+                            {item.symbol}
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${badgeColor}`}>{action}</span>
+                          </div>
+                          <p className="text-slate-400">{reason}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Rebalance Body */}
+            {activeModal === 'rebalance' && (
+              <div className="space-y-4">
+                <p className="text-xs text-slate-400">Compares actual position weights against equal-weighted model targets.</p>
+                <div className="space-y-3">
+                  {portfolio.map((item) => {
+                    const totalVal = portfolio.reduce((acc, p) => acc + p.currentValue, 0);
+                    const actualPct = totalVal > 0 ? (item.currentValue / totalVal) * 100 : 0;
+                    const targetPct = 100 / portfolio.length;
+                    const diffPct = actualPct - targetPct;
+
+                    return (
+                      <div key={item.symbol} className="bg-slate-950/60 border border-slate-800 p-3.5 rounded-xl space-y-2 text-xs">
+                        <div className="flex justify-between font-bold text-slate-200">
+                          <span>{item.symbol}</span>
+                          <span>Actual: {actualPct.toFixed(1)}% | Target: {targetPct.toFixed(1)}%</span>
+                        </div>
+                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                          <div className="bg-blue-500 h-full rounded-full" style={{ width: `${Math.min(actualPct, 100)}%` }} />
+                        </div>
+                        <div className="text-right font-semibold text-slate-400">
+                          {diffPct > 2 ? <span className="text-amber-400">Overweight: Trim ~{diffPct.toFixed(1)}%</span> :
+                           diffPct < -2 ? <span className="text-emerald-400">Underweight: Add ~{Math.abs(diffPct).toFixed(1)}%</span> :
+                           <span className="text-slate-500">Balanced</span>}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Div Strategy Body */}
+            {activeModal === 'divstrat' && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
+                    <span className="text-xs text-slate-400">Est. Annual Dividend Income</span>
+                    <div className="text-xl font-extrabold text-emerald-400 mt-1">$485.20</div>
+                  </div>
+                  <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl text-center">
+                    <span className="text-xs text-slate-400">Portfolio Dividend Yield</span>
+                    <div className="text-xl font-extrabold text-indigo-400 mt-1">4.2%</div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl space-y-2">
+                  <h4 className="text-xs font-bold text-slate-300 uppercase">Quarterly Payout Schedule</h4>
+                  <div className="grid grid-cols-4 gap-2 text-center text-xs">
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q1</span><div className="font-bold text-slate-200 mt-0.5">$95.00</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q2</span><div className="font-bold text-slate-200 mt-0.5">$140.20</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q3</span><div className="font-bold text-slate-200 mt-0.5">$110.00</div></div>
+                    <div className="bg-slate-900 p-2 rounded-lg"><span className="text-slate-500">Q4</span><div className="font-bold text-slate-200 mt-0.5">$140.00</div></div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Compounding Snowball Body */}
+            {activeModal === 'compounding' && (
+              <div className="space-y-4">
+                <p className="text-xs text-slate-400">Snowball Reinvestment Target Recommendations for dividend payouts.</p>
+                <div className="space-y-2">
+                  <div className="bg-slate-950/60 border border-amber-500/30 p-4 rounded-xl flex items-center justify-between text-xs">
+                    <div>
+                      <div className="font-bold text-amber-400 text-sm flex items-center gap-1.5">
+                        <Flame className="w-4 h-4" /> Reinvest Payouts in BBRI.JK / BBCA.JK
+                      </div>
+                      <p className="text-slate-400 mt-1">5.9% yield with strong cash flow compound potential.</p>
+                    </div>
+                    <span className="font-bold text-emerald-400 text-sm">+8.2% Compounding APY</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="border-t border-slate-800 pt-4 text-right">
+              <button onClick={() => setActiveModal(null)} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

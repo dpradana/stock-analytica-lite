@@ -8,6 +8,7 @@ import Dashboard from '../components/Dashboard';
 import StockAnalysis from '../components/StockAnalysis';
 import PortfolioTracker from '../components/PortfolioTracker';
 import RiskAllocations from '../components/RiskAllocations';
+import ScreenersView from '../components/ScreenersView';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -347,6 +348,13 @@ export default function Home() {
         {activeTab === 'risk' && (
           <RiskAllocations 
             portfolio={portfolio}
+          />
+        )}
+        
+        {activeTab === 'screeners' && (
+          <ScreenersView 
+            onSelectTickerForAnalysis={handleNavigateToAnalysis}
+            livePrices={livePrices}
           />
         )}
       </main>

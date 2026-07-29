@@ -6,7 +6,8 @@ import {
   PieChart, 
   Menu, 
   X,
-  Sparkles
+  Sparkles,
+  Target
 } from 'lucide-react';
 import { ActiveTab } from '../types/stock';
 
@@ -23,6 +24,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
     { id: 'analysis' as ActiveTab, label: 'Stock Analysis', icon: TrendingUp },
     { id: 'portfolio' as ActiveTab, label: 'Portfolio Tracker', icon: Briefcase },
     { id: 'risk' as ActiveTab, label: 'Risk & Allocations', icon: PieChart },
+    { id: 'screeners' as ActiveTab, label: 'Stock Screeners', icon: Target },
   ];
 
   return (
