@@ -228,7 +228,7 @@ export default function PortfolioTracker({
                   <thead>
                     <tr className="border-b border-slate-800/50 bg-slate-950/20 text-slate-500 font-semibold text-xs tracking-wider uppercase">
                       <th className="px-5 py-4">Ticker</th>
-                      <th className="px-5 py-4">Shares</th>
+                      <th className="px-5 py-4">Holdings</th>
                       <th className="px-5 py-4">Avg Price</th>
                       <th className="px-5 py-4">Market Price</th>
                       <th className="px-5 py-4">Cost Basis</th>
@@ -239,10 +239,20 @@ export default function PortfolioTracker({
                   <tbody className="divide-y divide-slate-800/40 text-sm">
                     {portfolio.map((item) => {
                       const isUp = item.totalGainLoss >= 0;
+                      const isIDX = item.symbol.toUpperCase().endsWith('.JK');
                       return (
                         <tr key={item.symbol} className="hover:bg-slate-900/10 transition-colors">
                           <td className="px-5 py-4 font-bold text-slate-200">{item.symbol}</td>
-                          <td className="px-5 py-4 font-medium text-slate-300">{item.totalQuantity.toFixed(2)}</td>
+                          <td className="px-5 py-4 font-medium text-slate-300">
+                            {isIDX ? (
+                              <div>
+                                <span className="font-bold text-slate-200">{item.totalQuantity} Lot</span>
+                                <span className="text-xs text-slate-500 block">({(item.totalQuantity * 100).toLocaleString()} shares)</span>
+                              </div>
+                            ) : (
+                              <span>{item.totalQuantity.toFixed(2)} shares</span>
+                            )}
+                          </td>
                           <td className="px-5 py-4 text-slate-400">{formatCurrency(item.averageBuyPrice, item.currency)}</td>
                           <td className="px-5 py-4 text-slate-400">{formatCurrency(item.currentPrice, item.currency)}</td>
                           <td className="px-5 py-4 text-slate-400">{formatCurrency(item.totalCost, item.currency)}</td>
@@ -260,14 +270,8 @@ export default function PortfolioTracker({
                   </tbody>
                 </table>
               ) : (
-                <div className="p-12 text-center flex flex-col items-center justify-center space-y-2">
-                  <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 text-slate-500 mb-2">
-                    <Briefcase className="h-6 w-6" />
-                  </div>
-                  <p className="text-sm font-semibold text-slate-400">No positions open</p>
-                  <p className="text-xs text-slate-600 max-w-sm">
-                    Open positions will populate automatically when transactions are logged on the right side.
-                  </p>
+                <div className="p-8 text-center text-xs text-slate-600">
+                  No active positions logged yet.
                 </div>
               )}
             </div>
@@ -288,7 +292,7 @@ export default function PortfolioTracker({
                       <th className="px-5 py-3">Symbol</th>
                       <th className="px-5 py-3">Type</th>
                       <th className="px-5 py-3">Date</th>
-                      <th className="px-5 py-3">Shares</th>
+                      <th className="px-5 py-3">Quantity</th>
                       <th className="px-5 py-3">Price Paid</th>
                       <th className="px-5 py-3">Total Cost</th>
                       <th className="px-5 py-3 text-right">Action</th>
@@ -296,7 +300,10 @@ export default function PortfolioTracker({
                   </thead>
                   <tbody className="divide-y divide-slate-800/40 text-xs">
                     {transactions.slice().reverse().map((t) => {
-                      const currency = t.symbol.toUpperCase().endsWith('.JK') ? 'IDR' : 'USD';
+                      const isIDX = t.symbol.toUpperCase().endsWith('.JK');
+                      const currency = isIDX ? 'IDR' : 'USD';
+                      const totalShares = isIDX ? t.quantity * 100 : t.quantity;
+                      const totalCost = t.price * totalShares;
                       return (
                         <tr key={t.id} className="hover:bg-slate-900/10 transition-colors">
                           <td className="px-5 py-3 font-bold text-slate-200">{t.symbol}</td>
@@ -306,9 +313,11 @@ export default function PortfolioTracker({
                             </span>
                           </td>
                           <td className="px-5 py-3 text-slate-400">{t.date}</td>
-                          <td className="px-5 py-3 text-slate-300">{t.quantity}</td>
+                          <td className="px-5 py-3 text-slate-300">
+                            {isIDX ? `${t.quantity} Lot (${totalShares.toLocaleString()} sh)` : `${t.quantity} sh`}
+                          </td>
                           <td className="px-5 py-3 text-slate-400">{formatCurrency(t.price, currency)}</td>
-                          <td className="px-5 py-3 text-slate-400">{formatCurrency(t.price * t.quantity, currency)}</td>
+                          <td className="px-5 py-3 text-slate-400">{formatCurrency(totalCost, currency)}</td>
                           <td className="px-5 py-3 text-right">
                             <button
                               onClick={() => onDeleteTransaction(t.id)}
@@ -431,7 +440,9 @@ export default function PortfolioTracker({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Quantity</label>
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  Quantity ({symbol.toUpperCase().endsWith('.JK') ? 'Lots (1 Lot = 100 Shares)' : 'Shares'})
+                </label>
                 <input
                   type="number"
                   step="0.0001"

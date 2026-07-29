@@ -186,14 +186,18 @@ export default function Home() {
       .filter((entry) => entry[1].qty > 0)
       .map(([symbol, data]) => {
         const quote = quotes[symbol];
+        const isIDX = symbol.toUpperCase().endsWith('.JK');
+        const shareMultiplier = isIDX ? 100 : 1;
+        const totalShares = data.qty * shareMultiplier;
+
         const currentPrice = quote?.price || livePrices[symbol] || SUPPORTED_TICKERS[symbol]?.price || (data.cost / data.qty);
-        const currentValue = data.qty * currentPrice;
+        const currentValue = totalShares * currentPrice;
         const averageBuyPrice = data.cost / data.qty;
-        const totalCost = data.cost;
+        const totalCost = totalShares * averageBuyPrice;
         const totalGainLoss = currentValue - totalCost;
         const totalGainLossPercentage = totalCost > 0 ? (totalGainLoss / totalCost) * 100 : 0;
-        const currency = quote?.currency || (symbol.endsWith('.JK') ? 'IDR' : 'USD');
-        const sector = quote?.sector || SUPPORTED_TICKERS[symbol]?.sector || (symbol.toUpperCase().endsWith('.JK') ? 'Financial Services' : 'Other');
+        const currency = quote?.currency || (isIDX ? 'IDR' : 'USD');
+        const sector = quote?.sector || SUPPORTED_TICKERS[symbol]?.sector || (isIDX ? 'Financial Services' : 'Other');
         const beta = quote?.beta !== undefined && quote?.beta !== null ? quote.beta : (SUPPORTED_TICKERS[symbol]?.beta !== undefined ? SUPPORTED_TICKERS[symbol].beta : 1.0);
         // Real dividend yield from Yahoo Finance (as decimal, e.g. 0.048 = 4.8%)
         const dividendYield = quote?.dividendYield ?? 0;
