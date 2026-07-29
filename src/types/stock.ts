@@ -35,6 +35,7 @@ export interface PortfolioItem {
   currency?: string;
   sector?: string;
   beta?: number;
+  dividendYield?: number;
 }
 
 export interface IndexInfo {

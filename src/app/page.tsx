@@ -195,6 +195,8 @@ export default function Home() {
         const currency = quote?.currency || (symbol.endsWith('.JK') ? 'IDR' : 'USD');
         const sector = quote?.sector || SUPPORTED_TICKERS[symbol]?.sector || (symbol.toUpperCase().endsWith('.JK') ? 'Financial Services' : 'Other');
         const beta = quote?.beta !== undefined && quote?.beta !== null ? quote.beta : (SUPPORTED_TICKERS[symbol]?.beta !== undefined ? SUPPORTED_TICKERS[symbol].beta : 1.0);
+        // Real dividend yield from Yahoo Finance (as decimal, e.g. 0.048 = 4.8%)
+        const dividendYield = quote?.dividendYield ?? 0;
         
         return {
           symbol,
@@ -207,7 +209,8 @@ export default function Home() {
           totalGainLossPercentage,
           currency,
           sector,
-          beta
+          beta,
+          dividendYield
         };
       });
   }, [transactions, livePrices, quotes]);

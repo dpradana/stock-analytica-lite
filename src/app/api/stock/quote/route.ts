@@ -41,6 +41,8 @@ export async function GET(request: NextRequest) {
           sector: q.sector || 'Unknown',
           beta: q.beta,
           marketCap: q.marketCap,
+          dividendYield: q.trailingAnnualDividendYield ?? q.dividendYield ?? 0,
+          dividendRate: q.trailingAnnualDividendRate ?? q.dividendRate ?? 0,
         };
       }
     });

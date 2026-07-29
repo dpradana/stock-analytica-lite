@@ -130,11 +130,12 @@ export default function PortfolioTracker({
   const currencyCode = selectedStockInfo?.currency || 'IDR';
   const currencySymbol = currencyCode === 'USD' ? '$' : 'Rp';
 
-  // Dynamic 1-Year Dividend Gain Estimation
+  // Dynamic 1-Year Dividend Gain Estimation (using real Yahoo Finance yields)
   const totalPortfolioValue = portfolio.reduce((acc, p) => acc + p.currentValue, 0);
   const estAnnualDividend = portfolio.reduce((acc, item) => {
-    const yieldPct = item.symbol.endsWith('.JK') ? 0.048 : 0.018; // 4.8% for IDX, 1.8% for US stocks
-    return acc + (item.currentValue * yieldPct);
+    // dividendYield from Yahoo Finance is a decimal (e.g. 0.048 = 4.8%)
+    const yieldDecimal = item.dividendYield ?? 0;
+    return acc + (item.currentValue * yieldDecimal);
   }, 0);
   const portfolioYieldPct = totalPortfolioValue > 0 ? (estAnnualDividend / totalPortfolioValue) * 100 : 0;
 
@@ -198,7 +199,7 @@ export default function PortfolioTracker({
                   {formatCurrency(estAnnualDividend, 'IDR')}
                 </div>
                 <p className="text-[11px] text-slate-400 mt-0.5">
-                  Calculated based on current holding valuations (IDX: 4.8% yield | US: 1.8% yield)
+                  Calculated using real trailing annual dividend yields from Yahoo Finance per ticker
                 </p>
               </div>
               <div className="bg-slate-900/80 border border-slate-800 px-4 py-2.5 rounded-xl text-right">
